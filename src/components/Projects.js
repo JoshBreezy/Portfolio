@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardGoup, CardTitle, Breadcrumb, BreadcrumbItem, Button, Label } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle, Button, Col } from 'reactstrap';
 import { PROJECTS } from './shared/projects';
 import { baseURL } from './shared/baseURL';
 import { Link } from 'react-router-dom';
@@ -7,10 +7,10 @@ import { Link } from 'react-router-dom';
 
 function RenderProjects () {
     return (
-        <div className='col col-md-4'>
+        <>
             {PROJECTS.map(({id, name, image, link, repo, description}) => (
-
-                    <Card key={id}>
+                <Col sm='6' md='4' lg='3' key={id}>
+                    <Card style={{ backgroundColor: '#F7EFE6' }}>
                         <CardTitle tag='h3'>{name}</CardTitle>
                         <CardImg top src={baseURL + image} alt={name} />
                         <CardBody>
@@ -19,9 +19,9 @@ function RenderProjects () {
                             <CardText>Or checkout the github repo <a href={repo}><Button color='primary'>here!</Button></a></CardText>
                         </CardBody>
                     </Card>
-
+                </Col>
             ))}
-        </div>
+        </>
     )
 }
 
@@ -30,7 +30,7 @@ function RenderProjects () {
 
 function Projects() {
     return (
-        <div className='container'>
+        <div className='container-fluid'>
             <div className='row'>
                 <RenderProjects />
             </div>
