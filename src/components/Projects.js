@@ -15,8 +15,8 @@ function RenderProjects () {
                         <CardImg top src={baseURL + image} alt={name} />
                         <CardBody>
                             <CardText>{description}</CardText>
-                            <CardText>Check out the page <a href={link}><Button color='primary'>here!</Button></a></CardText>
-                            <CardText>Or checkout the github repo <a href={repo}><Button color='primary'>here!</Button></a></CardText>
+                            <CardText>Check out the page <a href={link} target="_blank" rel="noopener noreferrer"><Button color='primary'>here!</Button></a></CardText>
+                            <CardText>Or checkout the github repo <a href={repo} target="_blank" rel="noopener noreferrer"><Button color='primary'>here!</Button></a></CardText>
                         </CardBody>
                     </Card>
                 </Col>
