@@ -2,7 +2,6 @@ import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle, Button, Col } from 'reactstrap';
 import { PROJECTS } from './shared/projects';
 import { baseURL } from './shared/baseURL';
-import { Link } from 'react-router-dom';
 
 
 function RenderProjects () {
