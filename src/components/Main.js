@@ -1,17 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
-import { Button } from 'reactstrap';
+import { Button, Row, Col, Container } from 'reactstrap';
 
 
 export default function Main() {
     return (
-        <div className='container-fluid'>
-            <div className='position-absolute top-50 start-50 translate-middle'>
-                <Link to ='/projects'>
-                    <Button color='primary'>Projects</Button>
+        <Container style={{height: '100vh'}}>
+            <Row className='justify-content-center p-3'>
+                <Col className='col-sm-auto'>
+                    <Link to='/projects'>
+                        <Button color='primary'>Projects</Button>
+                    </Link>
+                </Col>
+            </Row>
+            <Row className='justify-content-center p-3'>
+                <Link to='/contact' className='col-auto'>
+                    <Button color='primary'>Contact</Button>
                 </Link>
-            </div>
-        </div>
+            </Row>
+        </Container>
     )
 }

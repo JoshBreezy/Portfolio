@@ -20,7 +20,7 @@ export const PROJECTS = [
         name: 'Nucamp React Site',
         image: '/images/nucamp.png',
         link: 'https://joshbreezy.github.io/nucampsite/',
-        repo: 'https://github.com/JoshBreezy/nucampsite',
+        repo: 'https://github.com/JoshBreezy/nucampsite/tree/build',
         description: `React has been an ongoing learning experience. Through the course 
         this website took several forms. Ending with an aplication that used redux 
         for state, a quickly put together json server, and several helper libraries 

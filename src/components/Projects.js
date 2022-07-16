@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, Button, Col } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle, CardGroup, Button, Col } from 'reactstrap';
 import { PROJECTS } from './shared/projects';
 import { baseURL } from './shared/baseURL';
 
@@ -8,8 +8,8 @@ function RenderProjects () {
     return (
         <>
             {PROJECTS.map(({id, name, image, link, repo, description}) => (
-                <Col sm='6' md='4' lg='3' key={id}>
-                    <Card style={{ backgroundColor: '#F7EFE6' }}>
+                <Col md='4'>
+                    <Card style={{ backgroundColor: '#F7EFE6', color: '#212529' }}>
                         <CardTitle tag='h3'>{name}</CardTitle>
                         <CardImg top src={baseURL + image} alt={name} />
                         <CardBody>
@@ -30,7 +30,7 @@ function RenderProjects () {
 function Projects() {
     return (
         <div className='container-fluid'>
-            <div className='row'>
+            <div className='row justify-content-center'>
                 <RenderProjects />
             </div>
         </div>
