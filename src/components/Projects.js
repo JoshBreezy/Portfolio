@@ -1,19 +1,20 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, CardGroup, Button, Col } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle, Container, Button, Col, Row } from 'reactstrap';
 import { PROJECTS } from './shared/projects';
 import { baseURL } from './shared/baseURL';
+
 
 
 function RenderProjects () {
     return (
         <>
             {PROJECTS.map(({id, name, image, link, repo, description}) => (
-                <Col md='4'>
+                <Col key={id} xs={8} md={5} lg={4}>
                     <Card style={{ backgroundColor: '#F7EFE6', color: '#212529' }}>
                         <CardTitle tag='h3'>{name}</CardTitle>
                         <CardImg top src={baseURL + image} alt={name} />
                         <CardBody>
-                            <CardText>{description}</CardText>
+                            <CardText className='line-clamp'>{description}</CardText>
                             <CardText>Check out the page <a href={link} target="_blank" rel="noopener noreferrer"><Button color='primary'>here!</Button></a></CardText>
                             <CardText>Or checkout the github repo <a href={repo} target="_blank" rel="noopener noreferrer"><Button color='primary'>here!</Button></a></CardText>
                         </CardBody>
@@ -26,14 +27,13 @@ function RenderProjects () {
 
 
 
-
 function Projects() {
     return (
-        <div className='container-fluid'>
-            <div className='row justify-content-center'>
+        <Container fluid='lg'>
+            <Row id='projectsRow'>
                 <RenderProjects />
-            </div>
-        </div>
+            </Row>
+        </Container>
     )
 }
 

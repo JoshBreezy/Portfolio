@@ -7,69 +7,6 @@ export default function ContactForm () {
     const { register, handleSubmit, formState: { errors } } = useForm();
     
     console.log(errors);
-    
-    /*
-    const [values, setValues] = useState({
-        first: '',
-        last: '',
-        email: '',
-        phone: '',
-        agree: false,
-        feedback: ''
-    });
-
-    const handleFirst = (event) => {
-        event.persist();
-        setValues((values) => ({
-            ...values,
-            first: event.target.value
-        }));
-    };
-
-    const handleLast = (event) => {
-        event.persist();
-        setValues((values) => ({
-            ...values,
-            last: event.target.value
-        }));
-    };
-
-    const handleEmail = (event) => {
-        event.persist();
-        setValues((values) => ({
-            ...values,
-            email: event.target.value
-        }));
-    };
-
-    const handlePhone = (event) => {
-        event.persist();
-        setValues((values) => ({
-            ...values,
-            phone: event.target.value
-        }));
-    };
-
-    const handleAgree = (event) => {
-        event.persist();
-        setValues((values) => ({
-            ...values,
-            agree: event.target.value
-        }));
-    };
-
-    const handleFeedback = (event) => {
-        event.persist();
-        setValues((values) => ({
-            ...values,
-            feedback: event.target.value
-        }));
-    };
-
-    const handleChange = (event) => {
-        this.setState({value: event.target.value});
-      }
-    */
 
     function sendEmail(e) {
         e.preventDefault();
@@ -85,7 +22,7 @@ export default function ContactForm () {
 
     return (
 
-        <Container className='container-fluid'>
+        <Container className='container'>
             <Row className='row-content'>
                 <Col className='col-12 mt-4'>
                     <h2>Contact Me!</h2>

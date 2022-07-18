@@ -1,24 +1,37 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ReactDOM from 'react-dom/client';
 import { Button, Row, Col, Container } from 'reactstrap';
+import { Parallax, ParallaxLayer } from '@react-spring/parallax';
+import { baseURL } from './shared/baseURL';
+import Projects from './Projects';
+import Contact from './Contact';
 
 
 export default function Main() {
     return (
-        <Container style={{height: '100vh'}}>
-            <Row className='justify-content-center p-3'>
-                <Col className='col-sm-auto'>
-                    <Link to='/projects'>
-                        <Button color='primary'>Projects</Button>
-                    </Link>
-                </Col>
-            </Row>
-            <Row className='justify-content-center p-3'>
-                <Link to='/contact' className='col-auto'>
-                    <Button color='primary'>Contact</Button>
-                </Link>
-            </Row>
-        </Container>
+        <Parallax pages={4}>
+            <ParallaxLayer
+                sticky={{ start: 0, end: 4}}
+                offset={0}
+                style={{
+                    backgroundImage: `url(${baseURL + '/images/josh.jpg'})`,
+                    backgroundSize: 'auto 100%',
+                    backgroundPosition: 'center',
+                    zIndex: '-1'
+                }}
+            />
+            <ParallaxLayer 
+                offset={.8}
+                speed={.5}
+            >
+                <Projects />
+            </ParallaxLayer>
+            <ParallaxLayer 
+                offset={2}
+                speed={.2}
+            >
+                <Contact />
+            </ParallaxLayer>
+        </Parallax>
     )
 }
