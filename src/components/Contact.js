@@ -4,7 +4,7 @@ import emailjs from '@emailjs/browser';
 
 export default function ContactForm () {
     
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, formState: { errors } } = useForm();
     
     console.log(errors);
 

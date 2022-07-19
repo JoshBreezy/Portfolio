@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Row, Col, Container } from 'reactstrap';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import { baseURL } from './shared/baseURL';
 import Projects from './Projects';
