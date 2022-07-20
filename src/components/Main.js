@@ -7,13 +7,13 @@ import Contact from './Contact';
 
 export default function Main() {
     return (
-        <Parallax pages={4}>
+        <Parallax pages={4} style={{ overflow: 'overlay' }}>
             <ParallaxLayer
                 sticky={{ start: 0, end: 4}}
                 offset={0}
                 style={{
                     backgroundImage: `url(${baseURL + '/images/josh.jpg'})`,
-                    backgroundSize: 'auto 100%',
+                    backgroundSize: 'auto auto',
                     backgroundPosition: 'center',
                     zIndex: '-1'
                 }}
@@ -25,7 +25,7 @@ export default function Main() {
                 <Projects />
             </ParallaxLayer>
             <ParallaxLayer 
-                offset={2}
+                offset={1.5}
                 speed={.2}
             >
                 <Contact />

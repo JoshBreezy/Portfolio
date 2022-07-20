@@ -25,17 +25,10 @@ body {
   scroll-behavior: smooth;
 }
 
-#projectsRow {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  overflow-x: scroll;
-  overflow-y: hidden;
-}
 
 ::-webkit-scrollbar {
-  height: .8em;
-  width: 1em
+  height: .4rem;
+  width: .6rem
 }
 
 ::-webkit-scrollbar-track {

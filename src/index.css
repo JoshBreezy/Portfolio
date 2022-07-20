@@ -20,3 +20,9 @@ code {
 select {
   margin-left: 10px;
 }
+
+#mobile.row {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+}
