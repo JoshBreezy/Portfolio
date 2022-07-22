@@ -16,12 +16,12 @@ function RenderProjects () {
     return (
         <>
             {PROJECTS.map(({id, name, image, link, repo, description}) => (
-                <Col key={id} xs={8} md={5} lg={4}>
+                <Col key={id} xs={9} md={5} lg={4}>
                     <Card style={{ backgroundColor: '#F7EFE6', color: '#212529' }}>
                         <CardTitle tag='h3'>{name}</CardTitle>
                         <CardImg top src={baseURL + image} alt={name} />
                         <CardBody>
-                            <CardText className='line-clamp'>{description}</CardText>
+                            <CardText>{description}</CardText>
                             <CardText>Check out the page <a href={link} target="_blank" rel="noopener noreferrer"><Button color='primary'>here!</Button></a></CardText>
                             <CardText>Or checkout the github repo <a href={repo} target="_blank" rel="noopener noreferrer"><Button color='primary'>here!</Button></a></CardText>
                         </CardBody>

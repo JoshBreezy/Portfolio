@@ -24,6 +24,6 @@ export const PROJECTS = [
         description: `React has been an ongoing learning experience. Through the course 
         this website took several forms. Ending with an aplication that used redux 
         for state, a quickly put together json server, and several helper libraries 
-        like thunk. At the moment, a few assets which were served from said json server are missing.`
+        like thunk. A few assets from said json server are missing.`
     }
 ]
