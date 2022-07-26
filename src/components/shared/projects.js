@@ -25,5 +25,13 @@ export const PROJECTS = [
         this website took several forms. Ending with an aplication that used redux 
         for state, a quickly put together json server, and several helper libraries 
         like thunk. A few assets from said json server are missing.`
+    },
+    {
+        id: 3,
+        name: 'Migrate Playlist',
+        image: null,
+        link: null,
+        repo: 'https://github.com/JoshBreezy/migrate',
+        description: 'Work in progress. Attempting to migrate playlists from youtube music to spotify.'
     }
 ]
