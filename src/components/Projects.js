@@ -36,8 +36,8 @@ function RenderProjects () {
 
 function Projects() {
     return (
-        <Container fluid='lg'>
-            <Row className={mob()}>
+        <Container>
+            <Row className='flex-nowrap overflow-auto'>
                 <RenderProjects />
             </Row>
         </Container>

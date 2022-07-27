@@ -21,9 +21,8 @@ export const PROJECTS = [
         image: '/images/nucamp.png',
         link: 'https://joshbreezy.github.io/nucampsite/',
         repo: 'https://github.com/JoshBreezy/nucampsite/tree/build',
-        description: `React has been an ongoing learning experience. Through the course 
-        this website took several forms. Ending with an aplication that used redux 
-        for state, a quickly put together json server, and several helper libraries 
+        description: `Through the course @NuCamp this website took several forms. Ending with an aplication that used redux 
+        for state, a restful json server, and several helper libraries 
         like thunk. A few assets from said json server are missing.`
     },
     {
