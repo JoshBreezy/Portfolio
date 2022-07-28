@@ -1,7 +1,6 @@
 import React, { useRef} from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle, Container, Button, Col} from 'reactstrap';
 import { PROJECTS } from './shared/projects';
-import { baseURL } from './shared/baseURL';
 import { isMobile } from 'react-device-detect';
 
 
@@ -26,7 +25,7 @@ function RenderProjects () {
                         <Col key={id} xs={9} md={5} lg={4} className={deskMarg()}>
                             <Card style={{ backgroundColor: '#F7EFE6', color: '#212529' }}>
                                 <CardTitle tag='h3'>{name}</CardTitle>
-                                <CardImg top src={baseURL + image} alt={name} />
+                                <CardImg top src={process.env.PUBLIC_URL + image} alt={name} />
                                 <CardBody>
                                     <CardText>{description}</CardText>
                                     <CardText>Check out the page <a href={link} target="_blank" rel="noopener noreferrer"><Button color='primary'>here!</Button></a></CardText>
