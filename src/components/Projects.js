@@ -1,7 +1,6 @@
 import React, { useRef} from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle, Container, Button, Col} from 'reactstrap';
 import { PROJECTS } from './shared/projects';
-import { baseURL } from './shared/baseURL';
 import { isMobile } from 'react-device-detect';
 
 
