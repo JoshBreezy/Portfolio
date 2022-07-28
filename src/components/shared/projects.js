@@ -28,7 +28,7 @@ export const PROJECTS = [
     {
         id: 3,
         name: 'Migrate Playlist',
-        image: null,
+        image: '/images/playlist.png',
         link: null,
         repo: 'https://github.com/JoshBreezy/migrate',
         description: 'Work in progress. Attempting to migrate playlists from youtube music to spotify.'
