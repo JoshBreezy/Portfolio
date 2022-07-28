@@ -19,7 +19,7 @@ export default function Main() {
 
     const slideRight = useSpring({ 
         to: { x: 0 }, 
-        from: { x: 1490 }, 
+        from: { x: 1600 }, 
         config: config.molasses,
         delay: 1000
     });
@@ -37,7 +37,7 @@ export default function Main() {
                 sticky={{ start: 0, end: 4}}
                 offset={0}
                 style={{
-                    backgroundImage: `url('/images/josh.jpg'})`,
+                    backgroundImage: `url('/images/josh.jpg')`,
                     backgroundSize: 'auto auto',
                     backgroundPosition: 'center',
                     zIndex: '-1'
