@@ -37,7 +37,7 @@ export default function Main() {
                 sticky={{ start: 0, end: 4}}
                 offset={0}
                 style={{
-                    backgroundImage: `url(${baseURL + '/images/josh.jpg'})`,
+                    backgroundImage: `url('/images/josh.jpg'})`,
                     backgroundSize: 'auto auto',
                     backgroundPosition: 'center',
                     zIndex: '-1'
