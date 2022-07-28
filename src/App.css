@@ -32,7 +32,6 @@ h1 {
   scroll-behavior: smooth;
 }
 
-
 ::-webkit-scrollbar {
   height: .4rem;
   width: .6rem
