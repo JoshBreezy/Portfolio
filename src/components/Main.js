@@ -36,7 +36,7 @@ export default function Main() {
                 sticky={{ start: 0, end: 4}}
                 offset={0}
                 style={{
-                    backgroundImage: `url(${process.env.PUBLIC_URL + '/images/josh.jpg'})`,
+                    backgroundImage: `url(${process.env.PUBLIC_URL + 'images/Josh.jpg'})`,
                     backgroundSize: 'auto auto',
                     backgroundPosition: 'center',
                     zIndex: '-1'
