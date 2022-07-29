@@ -17,7 +17,7 @@ function RenderProjects () {
     return (
         <>
             <div className='row flex-nowrap overflow-auto' style={{scrollBehavior: 'smooth'}} ref={ref}>
-                <button className="carousel-control-prev h-25" style={{top: '25%'}} hidden={mob()} type="button" onClick={() => scroll(-300)}>
+                <button className="carousel-control-prev h-25" style={{top: '40%'}} hidden={mob()} type="button" onClick={() => scroll(-300)}>
                     <span className="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
                     <span className="visually-hidden">Previous</span>
                 </button>
@@ -34,7 +34,7 @@ function RenderProjects () {
                             </Card>
                         </Col>
                     ))}
-                <button className="carousel-control-next h-25" style={{top: '25%', right: '-.5%'}} hidden={mob()} type="button" onClick={() => scroll(300)}>
+                <button className="carousel-control-next h-25" style={{top: '40%', right: '-.5%'}} hidden={mob()} type="button" onClick={() => scroll(300)}>
                     <span className="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
                     <span className="visually-hidden">Next</span>
                 </button>

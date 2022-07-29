@@ -26,14 +26,14 @@ export default function Main() {
     const fadeIn = useSpring({ 
         to: { opacity: 1 }, 
         from: { opacity: 0 },
-        config: config.slow,
-        delay: 500
+        config: config.molasses,
+        delay: 1000
     });
 
     return (
-        <Parallax pages={4} style={{ overflow: 'overlay' }}>
+        <Parallax pages={3} style={{ overflow: 'overlay' }}>
             <ParallaxLayer
-                sticky={{ start: 0, end: 4}}
+                sticky={{ start: 0, end: 3}}
                 offset={0}
                 style={{
                     backgroundImage: `url(${process.env.PUBLIC_URL + 'images/Josh.jpg'})`,
@@ -43,7 +43,7 @@ export default function Main() {
                 }}
             />
             <ParallaxLayer
-                offset={.2}
+                offset={0}
                 speed={2}
             >
                 <animated.div style={slideLeft} className='containter'>
@@ -58,7 +58,7 @@ export default function Main() {
                 </animated.div>
             </ParallaxLayer>
             <ParallaxLayer 
-                offset={.8}
+                offset={.6}
                 speed={.5}
             >
                 <animated.div style={slideLeft} className='containter'>
@@ -73,9 +73,14 @@ export default function Main() {
                 </animated.div>
             </ParallaxLayer>
             <ParallaxLayer 
-                offset={1.7}
+                offset={1.6}
                 speed={.2}
             >
+                <div className='row'>
+                    <div className='col-md-auto'>
+                        <h1 style={{ margin: '3rem', fontSize: '3rem', padding: '1rem', backgroundColor: 'hsla(0,0%, 100%, .75', borderRadius: '2rem'}}>Contact</h1>
+                    </div>
+                </div>
                 <Contact />
             </ParallaxLayer>
         </Parallax>
