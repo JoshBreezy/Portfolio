@@ -1,7 +1,7 @@
 {
   "name": "resume",
   "version": "0.1.0",
-  "homepage": "https://JoshBreezy.github.io/Portfolio",
+  "homepage": "https://joshbrazinski.com",
   "private": true,
   "dependencies": {
     "@emailjs/browser": "^3.6.2",
