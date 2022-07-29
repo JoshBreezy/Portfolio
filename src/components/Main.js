@@ -58,9 +58,16 @@ export default function Main() {
                 </animated.div>
             </ParallaxLayer>
             <ParallaxLayer 
-                offset={.9}
+                offset={.8}
                 speed={.5}
             >
+                <animated.div style={slideLeft} className='containter'>
+                    <div className='row'>
+                        <div className='col-md-auto'>
+                            <h1 style={{ margin: '3rem', fontSize: '3rem', padding: '1rem', backgroundColor: 'hsla(0,0%, 100%, .75', borderRadius: '2rem'}}>Projects</h1>
+                        </div>
+                    </div>
+                </animated.div>
                 <animated.div style={fadeIn}>
                     <Projects />
                 </animated.div>
