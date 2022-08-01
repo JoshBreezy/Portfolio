@@ -1,14 +1,22 @@
 export const PROJECTS = [
     {
         id: 0,
-        name: 'Band Website',
+        name: 'This Site :o',
+        image: '/images/abed.jpg',
+        link: 'https://joshbrazinski.com',
+        repo: 'https://github.com/JoshBreezy/Portfolio',
+        description: 'Info on this very website. A single page react app with react-spring and parallax for animations plus react-strap for layout and elements.'
+    },
+    {
+        id: 1,
+        name: 'Band Site',
         image: '/images/band.png',
         link: 'https://joshbreezy.github.io/Hurricane-website/',
         repo: 'https://github.com/JoshBreezy/Hurricane-website',
         description: 'This is the original webpage I built for my band using only HTML and CSS. It represents my level of knowledge before starting bootcamp.'
     },
     {
-        id: 1,
+        id: 2,
         name: 'Excursion Site',
         image:'/images/excursion.png',
         link: 'https://joshbreezy.github.io/excursion/',
@@ -16,7 +24,7 @@ export const PROJECTS = [
         description: 'A very simple webpage advertizing an excursion service. One of our very first projects at NuCamp.'
     },
     {
-        id: 2,
+        id: 3,
         name: 'Nucamp React Site',
         image: '/images/nucamp.png',
         link: 'https://joshbreezy.github.io/nucampsite/',
@@ -26,7 +34,7 @@ export const PROJECTS = [
         like thunk. A few assets from said json server are missing.`
     },
     {
-        id: 3,
+        id: 4,
         name: 'Migrate Playlist',
         image: '/images/playlist.png',
         link: null,
