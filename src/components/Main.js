@@ -18,7 +18,7 @@ export default function Main() {
 
     const slideRight = useSpring({ 
         to: { x: 0 }, 
-        from: { x: 1600 }, 
+        from: { x: 1700 }, 
         config: config.molasses,
         delay: 1000
     });
@@ -26,7 +26,7 @@ export default function Main() {
     const fadeIn = useSpring({ 
         to: { opacity: 1 }, 
         from: { opacity: 0 },
-        config: config.molasses,
+        config: config.slow,
         delay: 1000
     });
 
