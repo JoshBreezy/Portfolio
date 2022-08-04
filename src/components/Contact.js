@@ -23,7 +23,7 @@ export default function ContactForm () {
     return (
 
         <Container className='container'>
-            <Row className='row-content'>
+            <Row className='row-content px-3'>
                 <Col className='col-12 mt-4'>
                     <h2>Contact Me!</h2>
                     <hr/>
