@@ -58,7 +58,7 @@ export default function Main() {
                 </animated.div>
             </ParallaxLayer>
             <ParallaxLayer 
-                offset={.6}
+                offset={.65}
                 speed={.5}
             >
                 <animated.div style={slideLeft} className='containter'>
