@@ -1,4 +1,4 @@
-import React, { useRef} from 'react';
+import React, { useRef } from 'react';
 import { PROJECTS } from './shared/projects';
 import { Card, CardImg, CardText, CardBody, CardTitle, CardFooter, Button, Col} from 'reactstrap';
 

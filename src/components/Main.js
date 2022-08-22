@@ -1,10 +1,18 @@
 import React from 'react';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
-import Projects from './Projects';
+import DeskProj from './DeskProj';
+import MobProj from './MobProj';
 import Contact from './Contact';
 import About from './About';
+import Blog from './Blog';
 import { useSpring, animated, config } from 'react-spring';
+import { isMobile } from 'react-device-detect';
 
+
+const mob = () => isMobile? <MobProj /> : <DeskProj />;
+
+
+const slideW = window.innerWidth;
 
 
 export default function Main() {
@@ -18,7 +26,7 @@ export default function Main() {
 
     const slideRight = useSpring({ 
         to: { x: 0 }, 
-        from: { x: 1700 }, 
+        from: { x: slideW }, 
         config: config.molasses,
         delay: 1000
     });
@@ -37,13 +45,14 @@ export default function Main() {
                 offset={0}
                 style={{
                     backgroundImage: `url(${process.env.PUBLIC_URL + 'images/Josh.jpg'})`,
-                    backgroundSize: 'auto auto',
+                    backgroundSize: 'auto 100%',
                     backgroundPosition: 'center',
                     zIndex: '-1'
                 }}
             />
             <ParallaxLayer
-                offset={0}
+                offset={.25}
+                factor={.25}
                 speed={2}
             >
                 <animated.div style={slideLeft} className='containter'>
@@ -58,7 +67,8 @@ export default function Main() {
                 </animated.div>
             </ParallaxLayer>
             <ParallaxLayer 
-                offset={.6}
+                offset={.7}
+                factor={.75}
                 speed={.5}
             >
                 <animated.div style={slideLeft} className='containter'>
@@ -69,11 +79,33 @@ export default function Main() {
                     </div>
                 </animated.div>
                 <animated.div style={fadeIn}>
-                    <Projects />
+                    <div className='container'>
+                        {mob()}
+                    </div>
+                </animated.div>
+            </ParallaxLayer>
+            <ParallaxLayer
+                hidden={isMobile}
+                offset={1.25}
+                factor={.5}
+                speed={.7}
+            >
+                <animated.div style={slideLeft} className='containter'>
+                    <div className='row'>
+                        <div className='col-md-auto'>
+                            <h1 style={{ margin: '3rem', fontSize: '3rem', padding: '1rem', backgroundColor: 'hsla(0,0%, 100%, .75', borderRadius: '2rem'}}>Blog</h1>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className='col-7 m-auto'>
+                            <Blog />
+                        </div>
+                    </div>
                 </animated.div>
             </ParallaxLayer>
             <ParallaxLayer 
-                offset={1.6}
+                offset={2}
+                factor={.5}
                 speed={.2}
             >
                 <div className='row'>
