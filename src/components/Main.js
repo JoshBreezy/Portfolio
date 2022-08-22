@@ -4,12 +4,10 @@ import DeskProj from './DeskProj';
 import MobProj from './MobProj';
 import Contact from './Contact';
 import About from './About';
-import Blog from './Blog';
+import DeskBlog from './DeskBlog';
+import MobBlog from './MobBlog';
 import { useSpring, animated, config } from 'react-spring';
 import { isMobile } from 'react-device-detect';
-
-
-const mob = () => isMobile? <MobProj /> : <DeskProj />;
 
 
 const slideW = window.innerWidth;
@@ -38,6 +36,7 @@ export default function Main() {
         delay: 1000
     });
 
+
     return (
         <Parallax pages={3} style={{ overflow: 'overlay' }}>
             <ParallaxLayer
@@ -51,7 +50,7 @@ export default function Main() {
                 }}
             />
             <ParallaxLayer
-                offset={.25}
+                offset={.20}
                 factor={.25}
                 speed={2}
             >
@@ -73,35 +72,34 @@ export default function Main() {
             >
                 <animated.div style={slideLeft} className='containter'>
                     <div className='row'>
-                        <div className='col-md-auto'>
+                        <div className='col-auto'>
                             <h1 style={{ margin: '3rem', fontSize: '3rem', padding: '1rem', backgroundColor: 'hsla(0,0%, 100%, .75', borderRadius: '2rem'}}>Projects</h1>
                         </div>
                     </div>
                 </animated.div>
                 <animated.div style={fadeIn}>
                     <div className='container'>
-                        {mob()}
+                        { isMobile? <MobProj /> : <DeskProj />}
                     </div>
                 </animated.div>
             </ParallaxLayer>
             <ParallaxLayer
-                hidden={isMobile}
                 offset={1.25}
                 factor={.5}
                 speed={.7}
             >
-                <animated.div style={slideLeft} className='containter'>
+                <div className='containter'>
                     <div className='row'>
-                        <div className='col-md-auto'>
+                        <div className='col-auto'>
                             <h1 style={{ margin: '3rem', fontSize: '3rem', padding: '1rem', backgroundColor: 'hsla(0,0%, 100%, .75', borderRadius: '2rem'}}>Blog</h1>
                         </div>
                     </div>
                     <div className="row">
-                        <div className='col-7 m-auto'>
-                            <Blog />
+                        <div className='col-10 col-md-8 m-auto'>
+                            {isMobile? <MobBlog /> : <DeskBlog /> }
                         </div>
                     </div>
-                </animated.div>
+                </div>
             </ParallaxLayer>
             <ParallaxLayer 
                 offset={2}
@@ -109,7 +107,7 @@ export default function Main() {
                 speed={.2}
             >
                 <div className='row'>
-                    <div className='col-md-auto'>
+                    <div className='col-auto'>
                         <h1 style={{ margin: '3rem', fontSize: '3rem', padding: '1rem', backgroundColor: 'hsla(0,0%, 100%, .75', borderRadius: '2rem'}}>Contact</h1>
                     </div>
                 </div>

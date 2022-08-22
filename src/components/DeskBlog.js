@@ -15,7 +15,7 @@ import {
 
 const items = BLOGS
 
-export default function Blog() {
+export default function DeskBlog() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 

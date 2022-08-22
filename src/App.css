@@ -72,7 +72,17 @@ h1 {
   align-items: center;
   position: absolute !important;
   height: auto;
-  top: 2.4rem
+  top: 2.4rem;
+  overflow-y: scroll;
+}
+
+.mob-blog-card {
+  background-color: #ffffff !important;
+  color: #212529;
+  align-items: center;
+  position: absolute !important;
+  top: 0;
+  overflow-y: scroll;
 }
 
 .line-clamp {
