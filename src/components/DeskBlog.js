@@ -60,7 +60,6 @@ export default function DeskBlog() {
       previous={previous}
       interval= {0}
       fade
-      enableTouch
       dark
     >
       <CarouselIndicators
