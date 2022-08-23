@@ -17,40 +17,21 @@ import {
 
 const items = BLOGS;
 
-function MobBlogCard({ blog }) {
-  const [visible, setVisible] = useState(false);
-
-  function toggleIn() {
-    setVisible(!visible);
-  }
-  return (
-    <Card
-      style={{ height: "18rem", backgroundColor: "#F7EFE6", color: "#212529" }}
-    >
-      <CardTitle tag="h3" className="m-2">
-        {blog.title}
-      </CardTitle>
-      <CardSubtitle className="offset-1">{blog.date}</CardSubtitle>
-      <CardBody className="my-auto">
-        <div className="row h-100">
-          <Button color="primary" onClick={toggleIn} className="col-5 m-auto">
-            View Blog
-          </Button>
-        </div>
-      </CardBody>
-      <CardFooter className="mb-5">Comments comming soon!</CardFooter>
-    </Card>
-  );
-}
-
 export default function MobBlog() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
   const [visible, setVisible] = useState(false);
+  const [zindex, setZIndex] = useState("-100");
 
   function toggleOut() {
     setVisible(!visible);
+    setZIndex("-100");
+  }
+
+  function toggleIn() {
+    setVisible(!visible);
+    setZIndex("100");
   }
 
   const next = () => {
@@ -76,10 +57,34 @@ export default function MobBlog() {
       onExited={() => setAnimating(false)}
       key={blog.id}
     >
-      <MobBlogCard blog={blog} />
-      <Fade in={visible} exit className="card mob-blog-card" enableTouch>
+      <Card
+        style={{
+          height: "18rem",
+          backgroundColor: "#F7EFE6",
+          color: "#212529",
+        }}
+      >
+        <CardTitle tag="h3" className="m-2">
+          {blog.title}
+        </CardTitle>
+        <CardSubtitle className="offset-1">{blog.date}</CardSubtitle>
+        <CardBody className="my-auto">
+          <div className="row h-100">
+            <Button color="primary" onClick={toggleIn} className="col-5 m-auto">
+              View Blog
+            </Button>
+          </div>
+        </CardBody>
+        <CardFooter className="mb-5">Comments comming soon!</CardFooter>
+      </Card>
+      <Fade
+        in={visible}
+        exit
+        className="card mob-blog-card"
+        style={{ zIndex: zindex }}
+      >
         <CardBody>
-          <CardText onClick={toggleOut}>{blog.content}</CardText>
+          <CardText onClick={toggleOut} className='p-2'>{blog.content}</CardText>
         </CardBody>
       </Fade>
     </CarouselItem>
@@ -90,6 +95,7 @@ export default function MobBlog() {
       activeIndex={activeIndex}
       next={next}
       previous={previous}
+      interval={0}
       fade
       enableTouch
       dark

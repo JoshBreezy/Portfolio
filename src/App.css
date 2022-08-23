@@ -85,6 +85,10 @@ h1 {
   overflow-y: scroll;
 }
 
+.carousel-control{
+      width: 10%;
+}
+
 .line-clamp {
   display: -webkit-box;
   -webkit-line-clamp: 4;

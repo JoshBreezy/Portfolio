@@ -46,7 +46,7 @@ export default function DeskBlog() {
         <CardTitle tag='h3'>{blog.title}</CardTitle>
         <CardSubtitle>{blog.date}</CardSubtitle>
         <CardBody className="p-5">
-          <CardText className='px-5'>{blog.content}</CardText>
+          <CardText tag='h5'>{blog.content}</CardText>
         </CardBody>
         <CardFooter>Comments comming soon</CardFooter>
       </Card>
@@ -58,6 +58,7 @@ export default function DeskBlog() {
       activeIndex={activeIndex}
       next={next}
       previous={previous}
+      interval= {0}
       fade
       enableTouch
       dark
@@ -66,20 +67,19 @@ export default function DeskBlog() {
         items={items}
         activeIndex={activeIndex}
         onClickHandler={goToIndex}
-        style={{ filter: 'invert(1)' }}
       />
       {slides}
       <CarouselControl
         direction="prev"
         directionText="Previous"
         onClickHandler={previous}
-        style={{ filter: 'invert(1)' }}
+        className='w-auto p-2'
       />
       <CarouselControl
         direction="next"
         directionText="Next"
         onClickHandler={next}
-        style={{ filter: 'invert(1)' }}
+        className='w-auto p-2'
       />
     </Carousel>
   );
