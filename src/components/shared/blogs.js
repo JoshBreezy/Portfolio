@@ -15,5 +15,12 @@ export const BLOGS = [
         content: `Alright! I have the blog component working, and the mobile cards looking pretty good. Now I have to work on the z-index of the card element itself. As it stands, the card sits on top of the carousel controls, even when hidden.
         Obviously that won't do. I'm wondering if changing the state controller from adjusting the hidden property to the enabled property will solve the issue. Also, this being the second blog, it'll be cool to see if the carousel works properly now
         that there we're working with multiple blog elements. I've set the overflow of the blog to scroll, which is fine using a mouse wheel, but I'll need to check it out on the phone to make sure it isn't clunky.`
+    },
+    {
+        id: '2',
+        title: 'Finished mobile component',
+        date: '08-23-2023',
+        content: `Got the z-index issue worked out, I think it looks pretty good. Today I started working on an ubuntu server to run pihole and openvpn on. Things get a little confusing because I'm on AT&T and their routers / modems are setup the strangest way.
+         Yes I'm being polite about it. I'm still not confident about the right way to get it working so for now, I'm still working on blogs this way. Every time I read on of these blogs I notice ten typos :O`
     }
 ]
