@@ -1,6 +1,6 @@
 export const BLOGS = [
     {
-        id: 0',
+        id: 0,
         title: 'First Blog Post',
         date: '08-21-2022',
         content: `In an attempt to stay active, and continue learing new things in development, I've decided to create a blog section on my portfolio page!
