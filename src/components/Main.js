@@ -38,9 +38,9 @@ export default function Main() {
 
 
     return (
-        <Parallax pages={3.5} style={{ overflow: 'overlay' }}>
+        <Parallax pages={4} style={{ overflow: 'overlay' }}>
             <ParallaxLayer
-                sticky={{ start: 0, end: 3.5}}
+                sticky={{ start: 0, end: 4}}
                 offset={0}
                 style={{
                     backgroundImage: `url(${process.env.PUBLIC_URL + 'images/Josh.jpg'})`,
@@ -50,7 +50,7 @@ export default function Main() {
                 }}
             />
             <ParallaxLayer
-                offset={.15}
+                offset={.10}
                 factor={.25}
                 speed={2}
             >
@@ -67,7 +67,7 @@ export default function Main() {
             </ParallaxLayer>
             <ParallaxLayer 
                 offset={.8}
-                factor={.75}
+                factor={1}
                 speed={.5}
             >
                 <animated.div style={slideLeft} className='containter'>
@@ -84,8 +84,8 @@ export default function Main() {
                 </animated.div>
             </ParallaxLayer>
             <ParallaxLayer
-                offset={1.35}
-                factor={.5}
+                offset={1.9}
+                factor={1}
                 speed={.7}
             >
                 <div className='containter'>
@@ -102,7 +102,7 @@ export default function Main() {
                 </div>
             </ParallaxLayer>
             <ParallaxLayer 
-                offset={2}
+                offset={2.7}
                 factor={1}
                 speed={.2}
             >
