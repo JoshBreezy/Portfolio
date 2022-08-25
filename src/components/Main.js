@@ -1,44 +1,80 @@
 import React from 'react';
-import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import DeskProj from './DeskProj';
 import MobProj from './MobProj';
 import Contact from './Contact';
 import About from './About';
 import DeskBlog from './DeskBlog';
 import MobBlog from './MobBlog';
-import { useSpring, animated, config } from 'react-spring';
 import { isMobile } from 'react-device-detect';
-
-
-const slideW = window.innerWidth;
+import { useInView } from 'react-intersection-observer';
 
 
 export default function Main() {
-    
-    const slideLeft = useSpring({ 
-        to: { x: 0 }, 
-        from: { x: -450 }, 
-        config: config.molasses,
-        delay: 1000
-    });
 
-    const slideRight = useSpring({ 
-        to: { x: 0 }, 
-        from: { x: slideW }, 
-        config: config.molasses,
-        delay: 1000
+    const { ref, inView, entry } = useInView({
+        /* Optional options */
+        threshold: 1,
+        onChange: (inView) => {
+            if (inView) entry.target.classList.toggle('show')
+        }
     });
-
-    const fadeIn = useSpring({ 
-        to: { opacity: 1 }, 
-        from: { opacity: 0 },
-        config: config.slow,
-        delay: 1000
-    });
-
 
     return (
-        <Parallax pages={4} style={{ overflow: 'overlay' }}>
+        <div style={{
+            backgroundAttachment: 'fixed',
+            backgroundImage: `url(${process.env.PUBLIC_URL + 'images/Josh.jpg'})`,
+            backgroundSize: '100vh auto',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+        }} >
+            <div className='container' ref={ref}>
+                <div className='row'>
+                    <div className='col-md-auto'>
+                        <h1 style={{ margin: '3rem', fontSize: '3rem', padding: '1rem', backgroundColor: 'hsla(0,0%, 100%, .75', borderRadius: '2rem'}}>Josh Brazinski</h1>
+                    </div>
+                </div>
+            </div>
+            <div className='container mt-5' ref={ref}>
+                <About />
+            </div>
+            <div className='container' ref={ref}>
+                <div className='row'>
+                    <div className='col-auto'>
+                        <h1 style={{ margin: '3rem', fontSize: '3rem', padding: '1rem', backgroundColor: 'hsla(0,0%, 100%, .75', borderRadius: '2rem'}}>Projects</h1>
+                    </div>
+                </div>
+            </div>
+            <div className='container' ref={ref}>
+                { isMobile? <MobProj /> : <DeskProj /> }
+            </div>
+            <div className='container' ref={ref}>
+                <div className='row'>
+                    <div className='col-auto'>
+                        <h1 style={{ margin: '3rem', fontSize: '3rem', padding: '1rem', backgroundColor: 'hsla(0,0%, 100%, .75', borderRadius: '2rem'}}>Blog</h1>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className='col-10 col-md-8 m-auto'>
+                        {isMobile? <MobBlog /> : <DeskBlog /> }
+                    </div>
+                </div>
+            </div>
+            <div className='container' ref={ref}>
+                <div className='row'>
+                    <div className='col-auto'>
+                        <h1 style={{ margin: '3rem', fontSize: '3rem', padding: '1rem', backgroundColor: 'hsla(0,0%, 100%, .75', borderRadius: '2rem'}}>Contact</h1>
+                    </div>
+                </div>
+            </div>
+            <div className='container' ref={ref}>
+                <Contact />
+            </div>
+        </div>
+    )
+};
+
+
+{/* <Parallax pages={4} style={{ overflow: 'overlay' }}>
             <ParallaxLayer
                 sticky={{ start: 0, end: 4}}
                 offset={0}
@@ -113,6 +149,4 @@ export default function Main() {
                 </div>
                 <Contact />
             </ParallaxLayer>
-        </Parallax>
-    )
-};
+        </Parallax> */}

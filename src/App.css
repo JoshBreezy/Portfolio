@@ -7,12 +7,6 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 body {
   background-color: white;
 }
@@ -26,7 +20,6 @@ h1 {
 
 #root {
   min-height: 100vh;
-  width: 100vw;
   background-color: #282c34;
   font-family: 'Share Tech Mono';
   scroll-behavior: smooth;
@@ -34,7 +27,7 @@ h1 {
 
 ::-webkit-scrollbar {
   height: .4rem;
-  width: .6rem
+  width: .6rem;
 }
 
 ::-webkit-scrollbar-track {
@@ -87,6 +80,17 @@ h1 {
 
 .carousel-control{
       width: 10%;
+}
+
+.main {
+  transform: translateX(100vw);
+  opacity: 0;
+  transition: 200ms ease
+}
+
+.main.show {
+  transform: translateX(0);
+  opacity: 1;
 }
 
 .line-clamp {
