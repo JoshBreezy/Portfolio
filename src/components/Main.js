@@ -5,11 +5,35 @@ import Contact from './Contact';
 import About from './About';
 import DeskBlog from './DeskBlog';
 import MobBlog from './MobBlog';
+import { useSpring } from './react-spring'
 import { isMobile } from 'react-device-detect';
 
 
 
 export default function Main() {
+
+    const slideW = window.innerWidth;
+    
+    const slideLeft = useSpring({ 
+        to: { x: 0 }, 
+        from: { x: -450 }, 
+        config: config.molasses,
+        delay: 1000
+    });
+
+    const slideRight = useSpring({ 
+        to: { x: 0 }, 
+        from: { x: slideW }, 
+        config: config.molasses,
+        delay: 1000
+    });
+
+    const fadeIn = useSpring({ 
+        to: { opacity: 1 }, 
+        from: { opacity: 0 },
+        config: config.slow,
+        delay: 1000
+    });
 
     return (
         <div style={{
