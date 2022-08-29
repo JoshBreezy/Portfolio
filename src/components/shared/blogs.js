@@ -39,5 +39,16 @@ export const BLOGS = [
         content: `As with most serious layout changes, removing the parallax layers has broken everything. Finally figured out the background situation (Hadn't heard of the background attachment prop before). Now it's on to the scrollbars. I setup some 
         custom css rules for the scrollbars and I honestly can't remember exactly how I got it looking good. Now considering a js solution which apparently has better browser support anyway. Definitely glad I thought to create a new git branch for this change. It's nice that I can work on those features and still reliably use
         the blog functionality and continue to post updates.`
+    },
+    {
+        id: 6,
+        title: 'Time to move on, and return later',
+        date: '08-28-2022 6:02pm',
+        content: `Sometimes you gotta move on from something and return to it later. I'm having so much ttrouble getting the observer to 
+        work well. I know that it's because the references are conflicting with each other, and that there is a way to make them work
+        without refactoring every component seperately, but for some reason I just can't wrap my brain around it at the moment. So 
+        for now, I'm merging the branches and moving on to something else. I did update the projects component for desktop view with a 
+        third party library that I like better than the one I wrote myself, and It may be responsive enough to work on both desktop and 
+        mobile allowing me to use one component instead of two. Wish me luck moving forward.`
     }
 ]
