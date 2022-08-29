@@ -82,6 +82,18 @@ h1 {
       width: 10%;
 }
 
+.react-multiple-carousel__arrow {
+  background: rgb(236, 196,188, 89%) !important;
+}
+
+.react-multiple-carousel__arrow:hover {
+  background: rgb(255, 208, 199) !important;
+}
+
+.react-multiple-carousel__arrow::before {
+  color: black !important;
+}
+
 .main {
   transform: translateX(100vw);
   opacity: 0;

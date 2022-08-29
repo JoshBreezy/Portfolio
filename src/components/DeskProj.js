@@ -31,11 +31,13 @@ export default function DeskProj() {
       };
 
     return (
+
         <Carousel
+            focusOnSelect={true}
             responsive={responsive}
             swipeable={false}
             draggable={false}
-            showDots={true}
+            showDots={false}
             infinite={true}
             keyBoardControl={true}
             customTransition="transform 600ms ease-in-out"
