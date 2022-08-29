@@ -8,8 +8,13 @@ import 'react-multi-carousel/lib/styles.css';
 export default function DeskProj() {
 
     const responsive = {
+        xtraLrg: {
+            breakpoint: { max: 6000, min: 1700 },
+            items: 4,
+            slidesToSlide: 4
+        },
         desktop: {
-          breakpoint: { max: 6000, min: 1200 },
+          breakpoint: { max: 1700, min: 1200 },
           items: 3,
           slidesToSlide: 3 // optional, default to 1.
         },

@@ -1,38 +1,29 @@
-import React, { useEffect, useRef, useState, useMemo }  from 'react';
+import React from 'react';
 import DeskProj from './DeskProj';
 import MobProj from './MobProj';
 import Contact from './Contact';
 import About from './About';
 import DeskBlog from './DeskBlog';
 import MobBlog from './MobBlog';
-import { useSpring } from './react-spring'
+import { useSpring, animated, config } from 'react-spring';
 import { isMobile } from 'react-device-detect';
 
 
 
 export default function Main() {
 
-    const slideW = window.innerWidth;
+    const slideW = 0 - window.innerWidth;
     
     const slideLeft = useSpring({ 
-        to: { x: 0 }, 
-        from: { x: -450 }, 
-        config: config.molasses,
-        delay: 1000
-    });
-
-    const slideRight = useSpring({ 
-        to: { x: 0 }, 
         from: { x: slideW }, 
+        to: { x: 0 }, 
         config: config.molasses,
-        delay: 1000
     });
 
     const fadeIn = useSpring({ 
-        to: { opacity: 1 }, 
         from: { opacity: 0 },
+        to: { opacity:1 }, 
         config: config.slow,
-        delay: 1000
     });
 
     return (
@@ -43,27 +34,31 @@ export default function Main() {
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
         }} >
-            <div className={' container'}>
+            <animated.div style={slideLeft} className= 'container'>
                 <div className='row'>
-                    <div className='col-md-auto'>
+                    <div className='col-auto'>
                         <h1 style={{ margin: '3rem', fontSize: '3rem', padding: '1rem', backgroundColor: 'hsla(0,0%, 100%, .75', borderRadius: '2rem'}}>Josh Brazinski</h1>
                     </div>
                 </div>
-            </div>
-            <div className={ ' container'}>
+            </animated.div>
+            <div />
+            <animated.div style={slideLeft} className= 'container'>
                 <About />
-            </div>
-            <div className='container'>
+            </animated.div>
+            <div />
+            <animated.div style={slideLeft} className='container'>
                 <div className='row'>
                     <div className='col-auto'>
                         <h1 style={{ margin: '3rem', fontSize: '3rem', padding: '1rem', backgroundColor: 'hsla(0,0%, 100%, .75', borderRadius: '2rem'}}>Projects</h1>
                     </div>
                 </div>
-            </div>
-            <div className={' container-responsive mx-5'}>
+            </animated.div>
+            <div />
+            <animated.div style={fadeIn} className={' container-responsive mx-5'}>
                 { isMobile? <MobProj /> : <DeskProj /> }
-            </div>
-            <div className='container'>
+            </animated.div>
+            <div />
+            <animated.div style={slideLeft} className='container'>
                 <div className='row'>
                     <div className='col-auto'>
                         <h1 style={{ margin: '3rem', fontSize: '3rem', padding: '1rem', backgroundColor: 'hsla(0,0%, 100%, .75', borderRadius: '2rem'}}>Blog</h1>
@@ -74,17 +69,17 @@ export default function Main() {
                         {isMobile? <MobBlog /> : <DeskBlog /> }
                     </div>
                 </div>
-            </div>
-            <div className='container'>
+            </animated.div>
+            <animated.div style={slideLeft} div className='container'>
                 <div className='row'>
                     <div className='col-auto'>
                         <h1 style={{ margin: '3rem', fontSize: '3rem', padding: '1rem', backgroundColor: 'hsla(0,0%, 100%, .75', borderRadius: '2rem'}}>Contact</h1>
                     </div>
                 </div>
-            </div>
-            <div className='container'>
+            </animated.div>
+            <animated.div style={slideLeft}className='container'>
                 <Contact />
-            </div>
+            </animated.div>
         </div>
     )
 };
