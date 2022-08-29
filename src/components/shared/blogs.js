@@ -31,5 +31,13 @@ export const BLOGS = [
         content: `I've been struggling with this parallax scroll since the beginning. It looks cool, but It just doesn't scale well
         on different devices. Definitely going to switch to a system that uses an observer for lazy loading instead. I think I'll be able
         to achieve a similar effect, plus added stability and performance.`
+    },
+    {
+        id: 5,
+        title: 'Refactoring Everything',
+        date: '08-25-2022 6:00am',
+        content: `As with most serious layout changes, removing the parallax layers has broken everything. Finally figured out the background situation (Hadn't heard of the background attachment prop before). Now it's on to the scrollbars. I setup some 
+        custom css rules for the scrollbars and I honestly can't remember exactly how I got it looking good. Now considering a js solution which apparently has better browser support anyway. Definitely glad I thought to create a new git branch for this change. It's nice that I can work on those features and still reliably use
+        the blog functionality and continue to post updates.`
     }
 ]
