@@ -50,5 +50,13 @@ export const BLOGS = [
         for now, I'm merging the branches and moving on to something else. I did update the projects component for desktop view with a 
         third party library that I like better than the one I wrote myself, and It may be responsive enough to work on both desktop and 
         mobile allowing me to use one component instead of two. Wish me luck moving forward.`
+    },
+    {
+        id: 7,
+        title: 'Well Well Well',
+        date: '08-30-2022 6:42am',
+        content: `Look who has a linux server running openvpn and pihole ;). Next servver project will be setting up a network drive to make sharing files across systems easier, but I do think thats a project
+        for another day. For now I'm enjoying the ad free network I've setup for myself and brainstorming for a new project to work on. When I update this site to use a databse for users and such,
+        I'll probably still host it with a third party just for security purposes. Don't need that traffic running through thee apartment.`
     }
 ]

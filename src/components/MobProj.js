@@ -1,21 +1,39 @@
 import React from 'react';
-import {Col} from 'reactstrap';
 import { PROJECTS } from './shared/projects';
 import CustomCard from './CustomCard';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 
 export default function MobProj() {
 
+    const responsive = {
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
+            slidesToSlide: 1 // optional, default to 1.
+          }
+    }
 
     return (
         <>
-            <div className='row flex-nowrap overflow-auto' style={{scrollBehavior: 'smooth'}}>
+            <Carousel
+                responsive={responsive}
+                focusOnSelect={true}
+                swipeable={true}
+                draggable={false}
+                showDots={false}
+                infinite={true}
+                arrows={false}
+                customTransition="transform 600ms ease-in-out"
+                transitionDuration={500}
+                containerClass="carousel-container"
+                centerMode = {true}
+            >
                 {PROJECTS.map(({...project}) => (
-                    <Col key={project.id} xs={9} md={5} lg={4}>
-                        <CustomCard project={project} />
-                    </Col>
+                    <CustomCard project={project} />
                 ))}
-            </div>
+            </Carousel>
         </>
     )
 }
