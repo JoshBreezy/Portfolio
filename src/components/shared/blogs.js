@@ -44,7 +44,7 @@ export const BLOGS = [
         id: 6,
         title: 'Time to move on, and return later',
         date: '08-28-2022 6:02pm',
-        content: `Sometimes you gotta move on from something and return to it later. I'm having so much ttrouble getting the observer to 
+        content: `Sometimes you gotta move on from something and return to it later. I'm having so much trouble getting the observer to 
         work well. I know that it's because the references are conflicting with each other, and that there is a way to make them work
         without refactoring every component seperately, but for some reason I just can't wrap my brain around it at the moment. So 
         for now, I'm merging the branches and moving on to something else. I did update the projects component for desktop view with a 
@@ -58,5 +58,15 @@ export const BLOGS = [
         content: `Look who has a linux server running openvpn and pihole ;). Next servver project will be setting up a network drive to make sharing files across systems easier, but I do think thats a project
         for another day. For now I'm enjoying the ad free network I've setup for myself and brainstorming for a new project to work on. When I update this site to use a databse for users and such,
         I'll probably still host it with a third party just for security purposes. Don't need that traffic running through thee apartment.`
+    },
+    {
+        id: 8,
+        title: 'A lot going on',
+        date: '09-0/-2022 2:02pm',
+        content: `Been working on a lot the last few days. Mostly on the linux server. I named it linuckles btw. Lots of installing and re-installing stuff when it doesn't work. I included a web interface
+        called cockpit which helps a lot with viewing logs and such. I have some kind of networking issue with communication between devices on the vpn network. I also spent the majority of a day with a free 
+        router that a neightbor was giving away. Flashed some custom firmware on there and attempted to change some settings, but I may have fried the thing lol. Also updated the resume with a cover letter.
+        Tried to give it a personal touch that's obviously missing from a simple list of achievements. I think next thing to tackle is .net and C++ or C#. I see lots of dev job listings that are looking for 
+        that particular skill, and after learning what it's capable of it sounds like a great idea.`
     }
 ]

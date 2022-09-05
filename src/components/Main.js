@@ -54,7 +54,7 @@ export default function Main() {
                 </div>
             </animated.div>
             <div />
-            <animated.div style={fadeIn} className={' container-responsive '}>
+            <animated.div style={fadeIn} className={' container-responsive mx-3 '}>
                 { isMobile? <MobProj /> : <DeskProj /> }
             </animated.div>
             <div />
