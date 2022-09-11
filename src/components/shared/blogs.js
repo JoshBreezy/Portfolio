@@ -55,18 +55,27 @@ export const BLOGS = [
         id: 7,
         title: 'Well Well Well',
         date: '08-30-2022 6:42am',
-        content: `Look who has a linux server running openvpn and pihole ;). Next servver project will be setting up a network drive to make sharing files across systems easier, but I do think thats a project
-        for another day. For now I'm enjoying the ad free network I've setup for myself and brainstorming for a new project to work on. When I update this site to use a databse for users and such,
-        I'll probably still host it with a third party just for security purposes. Don't need that traffic running through thee apartment.`
+        content: `Look who has a linux server running openvpn and pihole ;). Next server project will be setting up a network drive to make sharing files across systems easier, but I do think thats a project
+        for another day. For now I'm enjoying the ad free network I've setup for myself and brainstorming for a new project to work on. When I update this site to use a database for users and such,
+        I'll probably still host it with a third party just for security purposes. Don't need that traffic running through the apartment.`
     },
     {
         id: 8,
         title: 'A lot going on',
-        date: '09-0/-2022 2:02pm',
+        date: '09-09-2022 2:02pm',
         content: `Been working on a lot the last few days. Mostly on the linux server. I named it linuckles btw. Lots of installing and re-installing stuff when it doesn't work. I included a web interface
         called cockpit which helps a lot with viewing logs and such. I have some kind of networking issue with communication between devices on the vpn network. I also spent the majority of a day with a free 
         router that a neightbor was giving away. Flashed some custom firmware on there and attempted to change some settings, but I may have fried the thing lol. Also updated the resume with a cover letter.
         Tried to give it a personal touch that's obviously missing from a simple list of achievements. I think next thing to tackle is .net and C++ or C#. I see lots of dev job listings that are looking for 
         that particular skill, and after learning what it's capable of it sounds like a great idea.`
+    },
+    {
+        id: 9,
+        title: 'M.2 and cache',
+        date: '09-11-22 2:23pm',
+        content: `So. I did a thing and installed a sweet 1tb PCIe-4 drive in my windows 11 laptop. It was aparently not a good choice. I also setup a partition to use as cache for the old spinning disk drive
+        that I was using as an external, which all together would have had me around 2.6tb. Plenty of space for all the things. But oh the hell it's putting me through. I'm guessing that there is some 
+        sort of hardware signature the bios is recognizing and it insists the spinning disk should be the system disk. I'm leaving for a week starting tomorrow, and I need this thing to work. Will update you 
+        with progress.`
     }
 ]
