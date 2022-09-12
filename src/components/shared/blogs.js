@@ -77,5 +77,12 @@ export const BLOGS = [
         that I was using as an external, which all together would have had me around 2.6tb. Plenty of space for all the things. But oh the hell it's putting me through. I'm guessing that there is some 
         sort of hardware signature the bios is recognizing and it insists the spinning disk should be the system disk. I'm leaving for a week starting tomorrow, and I need this thing to work. Will update you 
         with progress.`
+    },
+    {
+        id: 10,
+        title: 'Great thing about having 2 drives',
+        date: '09-11-22 5:09pm',
+        content: `Re-installing windows isn't THAT big of a deal when you keep all your media on a second drive. That being said, it is time consuming and nerve wracking. This time I'll make sure everything is up
+        to date, including the bios, before I plug that second drive back in and see what's what.`
     }
 ]
