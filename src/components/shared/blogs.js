@@ -84,5 +84,13 @@ export const BLOGS = [
         date: '09-11-22 5:09pm',
         content: `Re-installing windows isn't THAT big of a deal when you keep all your media on a second drive. That being said, it is time consuming and nerve wracking. This time I'll make sure everything is up
         to date, including the bios, before I plug that second drive back in and see what's what.`
+    },
+    {
+        id: 11,
+        title: 'So far so good',
+        date: '09-12-2022 5:06am',
+        content: `Well, I've been using the laptop for a couple hours now without issue, so thats a good sign. Currently at LAX waiting 
+        to board for Atlanta. 12 year old me would lose it if he knew what technology would do in twenty years. I've got intel cache
+        partition working. Oh looks like we're about to board. I'll check in when we land.`
     }
 ]
