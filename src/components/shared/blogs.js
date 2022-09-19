@@ -92,5 +92,13 @@ export const BLOGS = [
         content: `Well, I've been using the laptop for a couple hours now without issue, so thats a good sign. Currently at LAX waiting 
         to board for Atlanta. 12 year old me would lose it if he knew what technology would do in twenty years. I've got intel cache
         partition working. Oh looks like we're about to board. I'll check in when we land.`
+    },
+    {
+        id: 12,
+        title: 'A big upgrade',
+        date: '09-18-2022 8:14pm',
+        content: `I've been putting off doing something that needs to be done. I need to setup a server and a database for these blogs. It's a lot and I'm intimidated, but I have done this once before 
+        in school, so I have a reference to check when I get lost. First I'll do a little research into which db service would be best for this application though. We used mongo in class 
+        but that doesn't mean something else wont work better. So expect updates there. I want to have standard user capabilities with comment and such. Wish me luck!`
     }
 ]

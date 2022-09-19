@@ -8,7 +8,7 @@ export default function About () {
                 <Card>
                     <CardBody>
                         <CardTitle>About Josh</CardTitle>
-                        <CardText>Hi there! I'm a recent NuCamp fullstack graduate excited to start a new career in web development!</CardText>
+                        <CardText>Hi there! I'm a recent NuCamp fullstack graduate excited to start a new career in software development!</CardText>
                     </CardBody>
                 </Card>
             </Col>
