@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DeskProj from './DeskProj';
 import MobProj from './MobProj';
 import Contact from './Contact';
 import About from './About';
 import DeskBlog from './DeskBlog';
 import MobBlog from './MobBlog';
+import LoginModal from './LoginModal';
 import { useSpring, animated, config } from 'react-spring';
 import { isMobile } from 'react-device-detect';
+import { Button } from 'reactstrap';
 
 
 
 export default function Main() {
+    const [modalOpen, setModal] = useState(false);
+    const toggleModal = () => setModal(!modalOpen);
 
     const slideW = 0 - window.innerWidth;
     
@@ -34,6 +38,12 @@ export default function Main() {
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
         }} >
+            <div className='container d-flex justify-content-end'>
+                <Button className='m-3' color='primary' onClick={toggleModal} >
+                    Login
+                </Button>
+            </div>
+            <LoginModal isOpen={modalOpen} toggle={toggleModal} />
             <animated.div style={slideLeft} className= 'container'>
                 <div className='row'>
                     <div className='col-auto'>

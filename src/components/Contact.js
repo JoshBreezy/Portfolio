@@ -37,7 +37,7 @@ export default function ContactForm () {
                         </Row>
                         <Row className='form-group align-items-center'>
                             <label htmlFor='last' className='col-md-2'>Last Name</label>
-                            <input id='first' name='last' className='col-md-10' {...register('last', {required: 'This is required'})} placeholder='Last Name' />
+                            <input id='last' name='last' className='col-md-10' {...register('last', {required: 'This is required'})} placeholder='Last Name' />
                             <p>{errors.last?.message}</p>
                         </Row>
                         <Row className='form-group align-items-center'>
