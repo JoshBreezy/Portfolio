@@ -6,6 +6,7 @@ import About from './About';
 import DeskBlog from './DeskBlog';
 import MobBlog from './MobBlog';
 import LoginModal from './LoginModal';
+import { AuthProvider } from '../contexts/AuthContext';
 import { useSpring, animated, config } from 'react-spring';
 import { isMobile } from 'react-device-detect';
 import { Button } from 'reactstrap';
@@ -43,7 +44,9 @@ export default function Main() {
                     Login
                 </Button>
             </div>
-            <LoginModal isOpen={modalOpen} toggle={toggleModal} />
+            <AuthProvider>
+                <LoginModal isOpen={modalOpen} toggle={toggleModal} />
+            </AuthProvider>
             <animated.div style={slideLeft} className= 'container'>
                 <div className='row'>
                     <div className='col-auto'>
