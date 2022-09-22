@@ -26,10 +26,6 @@ export default function LoginModal(props) {
         signup(getValues('email'), getValues('password'))
     }
 
-    const onSubmit = (data, e) => console.log(data, e);
-    const onError = (errors, e) => console.log(errors, e);
-
-
     return (
         <Modal className="container" isOpen={props.isOpen}>
             <ModalHeader className="justify-content-center">
