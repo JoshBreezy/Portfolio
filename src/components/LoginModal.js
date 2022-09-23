@@ -1,29 +1,38 @@
-import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { useState } from 'react';
+import { Modal, ModalHeader, ModalBody, ModalFooter, Alert } from "reactstrap";
 import { useForm } from "react-hook-form";
 import { useAuth } from '../contexts/AuthContext';
 
 
 export default function LoginModal(props) {
 
+    const [loading, setLoading] = useState(false);
+
     const { signup } = useAuth();
 
     const {
         register,
         getValues,
+        setError,
+        clearErrors,
         formState: { errors },
+        handleSubmit
     } = useForm({
         defaultValues: {
-            username: "",
+            // username: "",
             password: "",
             passwordConfirm: "",
             email: ""
         },
     });
 
-    function handleSubmit(e) {
-        e.preventDefault()
-
-        signup(getValues('email'), getValues('password'))
+    async function onSubmit (data) {
+        try {
+            setLoading(true)
+            await signup(getValues('email'), getValues('password'))
+        } catch {
+            setError('CreateAccountFail', {type: 'custom', message: 'Failed to create account'})
+        }
     }
 
     return (
@@ -34,16 +43,16 @@ export default function LoginModal(props) {
             <ModalBody>
                 <form
                     className="container mb-4"
-                    onSubmit={(e) => handleSubmit}
+                    onSubmit={handleSubmit}
                 >
-                    <input
+                    {/* <input
                         {...register("username", {
                             required: "Username is required",
                             maxLength: { value: 15, message: "Maximum of 15 characters" },
                         })}
                         className="form-control"
                         placeholder="username"
-                    />
+                    /> */}
                     <p>{errors.username?.message}</p>
                     <input
                         {...register("email", {
@@ -74,7 +83,7 @@ export default function LoginModal(props) {
                         placeholder="Confirm Password"
                     />
                     <p>{errors.passwordConfirm?.message}</p>
-                    <input type="submit" className="btn btn-primary" />
+                    <input disabled={loading} type="submit" className="btn btn-primary" />
                 </form>
                 <ModalFooter>
                     <a href="/">Already an account?</a>
