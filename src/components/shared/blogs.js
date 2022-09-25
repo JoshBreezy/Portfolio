@@ -100,5 +100,13 @@ export const BLOGS = [
         content: `I've been putting off doing something that needs to be done. I need to setup a server and a database for these blogs. It's a lot and I'm intimidated, but I have done this once before 
         in school, so I have a reference to check when I get lost. First I'll do a little research into which db service would be best for this application though. We used mongo in class 
         but that doesn't mean something else wont work better. So expect updates there. I want to have standard user capabilities with comment and such. Wish me luck!`
+    },
+    {
+        id: 13,
+        title: 'Success!',
+        date: '09-25-2022 3:05am',
+        content: `Alright! the account creation modal works! It even looks like the firebase setup is working as well, so I can now create users. Next step is a login modal for existing users, then on to 
+        setting up the database for users, blogs, comments, and so on. I was getting close to the point that I thought firebase was a mistake and I should have just written my own express server, but 
+        I do think this will save me a lot of time in the long run.`
     }
 ]
