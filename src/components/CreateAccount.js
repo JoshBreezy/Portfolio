@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useAuth } from '../contexts/AuthContext';
 
 
-export default function LoginModal(props) {
+export default function CreateAccount(props) {
 
     const [loading, setLoading] = useState(false);
 
@@ -26,43 +26,48 @@ export default function LoginModal(props) {
         },
     });
 
+    const checkPassMatch = () => {
+        if (getValues('password') !== getValues('passwordConfirm')) {
+            setError('passMissMatch', {type: 'custom', message: 'Passwords must match'})
+        } else {
+            clearErrors('passMissMatch')
+        }
+    }
+
     async function onSubmit (data) {
+
         try {
             setLoading(true)
             await signup(getValues('email'), getValues('password'))
         } catch {
             setError('CreateAccountFail', {type: 'custom', message: 'Failed to create account'})
         }
+        setLoading(false)
     }
 
     return (
         <Modal className="container" isOpen={props.isOpen}>
             <ModalHeader className="justify-content-center">
-                <h2>Login</h2>
+                <h2>Create Account</h2>
+                {errors.CreateAccountFail && <Alert color="danger">{errors.CreateAccountFail?.message}</Alert>}
             </ModalHeader>
             <ModalBody>
                 <form
                     className="container mb-4"
-                    onSubmit={handleSubmit}
+                    onSubmit={handleSubmit(onSubmit)}
                 >
-                    {/* <input
-                        {...register("username", {
-                            required: "Username is required",
-                            maxLength: { value: 15, message: "Maximum of 15 characters" },
-                        })}
-                        className="form-control"
-                        placeholder="username"
-                    /> */}
-                    <p>{errors.username?.message}</p>
+                    <label>Email</label>
                     <input
+                        type='email'
                         {...register("email", {
                             required: "Email is required",
-                            maxLength: { value: 15, message: "Maximum of 15 characters" },
+                            maxLength: { value: 50, message: "Maximum of 50 characters" },
                         })}
                         className="form-control"
                         placeholder="Email Address"
                     />
                     <p>{errors.email?.message}</p>
+                    <label>Password</label>
                     <input
                         type="password"
                         className="form-control"
@@ -70,19 +75,21 @@ export default function LoginModal(props) {
                             required: "Password is required",
                             minLength: { value: 8, message: "Minimum of 8 characters" },
                         })}
-                        placeholder="password"
+                        placeholder="Password"
                     />
                     <p>{errors.password?.message}</p>
+                    <label>Password Confirmation</label>
                     <input
                         type="password"
                         className="form-control"
                         {...register("passwordConfirm", {
                             required: "Confirmation is required",
-                            minLength: { value: 8, message: "Minimum of 8 characters" },
+                            validate: { checkPassMatch }
                         })}
                         placeholder="Confirm Password"
                     />
                     <p>{errors.passwordConfirm?.message}</p>
+                    <p>{errors.passMissMatch?.message}</p>
                     <input disabled={loading} type="submit" className="btn btn-primary" />
                 </form>
                 <ModalFooter>

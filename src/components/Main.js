@@ -5,7 +5,7 @@ import Contact from './Contact';
 import About from './About';
 import DeskBlog from './DeskBlog';
 import MobBlog from './MobBlog';
-import LoginModal from './LoginModal';
+import CreateAccount from './CreateAccount';
 import { AuthProvider } from '../contexts/AuthContext';
 import { useSpring, animated, config } from 'react-spring';
 import { isMobile } from 'react-device-detect';
@@ -41,11 +41,11 @@ export default function Main() {
         }} >
             <div className='container d-flex justify-content-end'>
                 <Button className='m-3' color='primary' onClick={toggleModal} >
-                    Login
+                    Create Account / Login
                 </Button>
             </div>
             <AuthProvider>
-                <LoginModal isOpen={modalOpen} toggle={toggleModal} />
+                <CreateAccount isOpen={modalOpen} toggle={toggleModal} />
             </AuthProvider>
             <animated.div style={slideLeft} className= 'container'>
                 <div className='row'>
