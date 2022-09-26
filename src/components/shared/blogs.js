@@ -108,5 +108,11 @@ export const BLOGS = [
         content: `Alright! the account creation modal works! It even looks like the firebase setup is working as well, so I can now create users. Next step is a login modal for existing users, then on to 
         setting up the database for users, blogs, comments, and so on. I was getting close to the point that I thought firebase was a mistake and I should have just written my own express server, but 
         I do think this will save me a lot of time in the long run.`
+    },
+    {
+        id: 14,
+        title: 'More success',
+        content: `Alright! Got the create account and login components working correctly. Added some logic to disable account creation and login if a current user exists. 
+        It may be time to actually start putting together the database for blogs and such. Can't wait!`
     }
 ]
