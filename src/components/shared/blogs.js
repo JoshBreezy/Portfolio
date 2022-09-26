@@ -112,6 +112,7 @@ export const BLOGS = [
     {
         id: 14,
         title: 'More success',
+        date: '09-26-2022 03:48am',
         content: `Alright! Got the create account and login components working correctly. Added some logic to disable account creation and login if a current user exists. 
         It may be time to actually start putting together the database for blogs and such. Can't wait!`
     }
