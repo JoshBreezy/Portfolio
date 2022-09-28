@@ -29,6 +29,9 @@ export default function Login(props) {
             setLoading(true)
             await login(getValues('email'), getValues('password'))
             props.setLoginOutcome(true)
+            setTimeout(() => {
+                props.toggle()
+            }, 2000)
         } catch {
             props.setLoginOutcome(false)
         }
