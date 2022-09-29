@@ -115,5 +115,13 @@ export const BLOGS = [
         date: '09-26-2022 03:48am',
         content: `Alright! Got the create account and login components working correctly. Added some logic to disable account creation and login if a current user exists. 
         It may be time to actually start putting together the database for blogs and such. Can't wait!`
+    },
+    {
+        id: 15,
+        title: 'Why',
+        date: '09-29-2022 4:42am',
+        content: `I haven't struggled this much with a concept in a long time. I honestly am at a loss here. I've tried so many ways to get firebase to send a verification email to the current user. Even 
+        going as far as making a button that is only responsible for calling that one function. It's been three days :( of watching the console, and the http requests, and reading the docs, and watching 
+        tutorials. ugh`
     }
 ]
