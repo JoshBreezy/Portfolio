@@ -123,5 +123,13 @@ export const BLOGS = [
         content: `I haven't struggled this much with a concept in a long time. I honestly am at a loss here. I've tried so many ways to get firebase to send a verification email to the current user. Even 
         going as far as making a button that is only responsible for calling that one function. It's been three days :( of watching the console, and the http requests, and reading the docs, and watching 
         tutorials. ugh`
+    },
+    {
+        id: 16,
+        title: 'I got it!',
+        date: '09-29-2022 9:27pm',
+        content: `I did it! that was so frustrating. Essentially, the corrent way to call the function to send the confirmation email was one layer deeper into the auth component than I realized. Could not be 
+        happier to be finished with that. I also updated reactstrap to the latest version which fixed the issue I was having with the next/previous animation not working correctly. Next up is a link for 
+        forgotten passwords, then it's on to getting that database up and running.`
     }
 ]
