@@ -7,7 +7,7 @@ export default function CreateAccount(props) {
 
     const [loading, setLoading] = useState(false);
 
-    const { signup } = useAuth();
+    const { signup, sendVerifyEmail } = useAuth();
 
     const [accountSuccess, setAccountSuccess] = useState(false);
 
@@ -43,6 +43,7 @@ export default function CreateAccount(props) {
                 props.toggle()
                 setAccountSuccess(false)
             }, 3000)
+            sendVerifyEmail()
         } catch (err) {
             console.log(JSON.stringify(err))
             setError(err)

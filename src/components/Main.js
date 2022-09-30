@@ -26,7 +26,7 @@ export default function Main() {
         setLogOrSign(!loginOrSign)
     }
 
-    const { currentUser, logout, sendVerifyEmail } = useAuth()
+    const { currentUser, logout } = useAuth()
 
 
     async function handleLogout() {
@@ -38,7 +38,7 @@ export default function Main() {
         } catch {
           setError("Failed to log out")
         }
-      }
+    }
 
 
     const slideW = 0 - window.innerWidth;
@@ -67,7 +67,6 @@ export default function Main() {
                 { currentUser? <Button className='m-3' color='primary' onClick={handleLogout}>Log Out</Button> : <Button className='m-3' color='primary' onClick={toggleModal} >
                     Create Account / Login
                 </Button>}
-                <Button onClick={sendVerifyEmail}>verify email</Button>
             </div>
                 <CreateAccount 
                     isOpen={modalOpen} 

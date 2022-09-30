@@ -25,7 +25,7 @@ export function AuthProvider({ children }) {
     }
 
     function sendVerifyEmail() {
-        return currentUser.sendEmailVerification()
+        return auth.currentUser.sendEmailVerification()
     }
 
 
