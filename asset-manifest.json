@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.a1698688.css",
-    "main.js": "/static/js/main.dd56c9d1.js",
+    "main.css": "/static/css/main.5876494c.css",
+    "main.js": "/static/js/main.cab84fae.js",
     "static/js/787.dc9ee2bf.chunk.js": "/static/js/787.dc9ee2bf.chunk.js",
     "static/media/ShareTechMono-Regular.ttf": "/static/media/ShareTechMono-Regular.d753b5dc50d171ecc94b.ttf",
     "static/media/revicons.eot": "/static/media/revicons.a77de540a38981833f9e.eot",
     "static/media/revicons.ttf": "/static/media/revicons.57fd05d4ae650374c8de.ttf",
     "static/media/revicons.woff": "/static/media/revicons.e8746a624ed098489406.woff",
     "index.html": "/index.html",
-    "main.a1698688.css.map": "/static/css/main.a1698688.css.map",
-    "main.dd56c9d1.js.map": "/static/js/main.dd56c9d1.js.map",
+    "main.5876494c.css.map": "/static/css/main.5876494c.css.map",
+    "main.cab84fae.js.map": "/static/js/main.cab84fae.js.map",
     "787.dc9ee2bf.chunk.js.map": "/static/js/787.dc9ee2bf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a1698688.css",
-    "static/js/main.dd56c9d1.js"
+    "static/css/main.5876494c.css",
+    "static/js/main.cab84fae.js"
   ]
 }
