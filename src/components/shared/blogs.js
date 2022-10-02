@@ -131,5 +131,14 @@ export const BLOGS = [
         content: `I did it! that was so frustrating. Essentially, the corrent way to call the function to send the confirmation email was one layer deeper into the auth component than I realized. Could not be 
         happier to be finished with that. I also updated reactstrap to the latest version which fixed the issue I was having with the next/previous animation not working correctly. Next up is a link for 
         forgotten passwords, then it's on to getting that database up and running.`
+    },
+    {
+        id: 17,
+        title: 'Merging some branches!',
+        date: '10-2-2022 04:13am',
+        content: `OK I'm finaly comfortable enough with the auth and DB systems to deploy them officially! So far all you can do is create an account lol, BUT! When you do, the system automaticaly creates 
+        a user in auth, and in the DB, then sends you an email with a link to confirm your given email address. Now that I have those setup, I crated a new branch for installing router. Until now I really 
+        wanted to keep this a single page app, but I do think it will make more sense to have at least one seperate page for handling user settings. I think this will be more secure as well because I can 
+        setup private path's that are only accessible to the current user. As much as I want to start working on the blog element, I should probably get the user settings together first. Wish me luck!`
     }
 ]
