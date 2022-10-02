@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter, Alert, Button } from "reactstrap";
 import { useAuth } from '../contexts/AuthContext';
+import { useDB } from '../contexts/DBContext';
 
 
 export default function CreateAccount(props) {
@@ -8,6 +9,8 @@ export default function CreateAccount(props) {
     const [loading, setLoading] = useState(false);
 
     const { signup, sendVerifyEmail } = useAuth();
+
+    const { addCurrentUserToDB } = useDB();
 
     const [accountSuccess, setAccountSuccess] = useState(false);
 
@@ -44,6 +47,7 @@ export default function CreateAccount(props) {
                 setAccountSuccess(false)
             }, 3000)
             sendVerifyEmail()
+            addCurrentUserToDB()
         } catch (err) {
             console.log(JSON.stringify(err))
             setError(err)

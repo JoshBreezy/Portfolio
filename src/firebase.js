@@ -1,5 +1,7 @@
 import firebase from 'firebase/compat/app';
 import "firebase/compat/auth";
+import 'firebase/compat/database';
+import { getAnalytics } from 'firebase/analytics';
 
 const app = firebase.initializeApp({
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -12,5 +14,7 @@ const app = firebase.initializeApp({
     measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 })
 
+export const analytics = getAnalytics(app);
 export const auth = app.auth();
+export const db = app.database();
 export default app;

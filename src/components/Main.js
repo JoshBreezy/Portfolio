@@ -28,7 +28,6 @@ export default function Main() {
 
     const { currentUser, logout } = useAuth()
 
-
     async function handleLogout() {
         setError("")
     
