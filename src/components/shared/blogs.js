@@ -108,5 +108,28 @@ export const BLOGS = [
         content: `Alright! the account creation modal works! It even looks like the firebase setup is working as well, so I can now create users. Next step is a login modal for existing users, then on to 
         setting up the database for users, blogs, comments, and so on. I was getting close to the point that I thought firebase was a mistake and I should have just written my own express server, but 
         I do think this will save me a lot of time in the long run.`
+    },
+    {
+        id: 14,
+        title: 'More success',
+        date: '09-26-2022 03:48am',
+        content: `Alright! Got the create account and login components working correctly. Added some logic to disable account creation and login if a current user exists. 
+        It may be time to actually start putting together the database for blogs and such. Can't wait!`
+    },
+    {
+        id: 15,
+        title: 'Why',
+        date: '09-29-2022 4:42am',
+        content: `I haven't struggled this much with a concept in a long time. I honestly am at a loss here. I've tried so many ways to get firebase to send a verification email to the current user. Even 
+        going as far as making a button that is only responsible for calling that one function. It's been three days :( of watching the console, and the http requests, and reading the docs, and watching 
+        tutorials. ugh`
+    },
+    {
+        id: 16,
+        title: 'I got it!',
+        date: '09-29-2022 9:27pm',
+        content: `I did it! that was so frustrating. Essentially, the corrent way to call the function to send the confirmation email was one layer deeper into the auth component than I realized. Could not be 
+        happier to be finished with that. I also updated reactstrap to the latest version which fixed the issue I was having with the next/previous animation not working correctly. Next up is a link for 
+        forgotten passwords, then it's on to getting that database up and running.`
     }
 ]
