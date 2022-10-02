@@ -49,7 +49,7 @@ export default function DeskProj() {
         >
             {
                 PROJECTS.map(({...project}) => (
-                        <Card className='mx-3'>
+                        <Card className='mx-3'key={project.id}>
                             <CardTitle tag='h3'>{project.name}</CardTitle>
                             <div className='d-flex' style={{minHeight: '45%'}}>
                                 <CardImg top src={process.env.PUBLIC_URL + project.image} alt={project.name} className='d-flex' style={{height: '100%'}} />

@@ -59,7 +59,6 @@ export default function DeskBlog() {
       next={next}
       previous={previous}
       interval= {0}
-      fade
       dark
     >
       <CarouselIndicators
@@ -72,7 +71,6 @@ export default function DeskBlog() {
         direction="prev"
         directionText="Previous"
         onClickHandler={previous}
-        cssModule={'react-multiple-carousel__arrow react-multiple-carousel__arrow--right'}
         className='w-auto p-2'
       />
       <CarouselControl
