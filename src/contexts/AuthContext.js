@@ -28,6 +28,10 @@ export function AuthProvider({ children }) {
         return auth.currentUser.sendEmailVerification()
     }
 
+    function updateUserEmail(email) {
+        return auth.currentUser.updateEmail(email)
+    }
+
     function sendResetPassEmail(email) {
         return auth.sendPasswordResetEmail(email)
     }
@@ -48,6 +52,7 @@ export function AuthProvider({ children }) {
         login,
         sendVerifyEmail,
         sendResetPassEmail,
+        updateUserEmail,
         logout
     }
 

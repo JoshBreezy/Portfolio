@@ -46,6 +46,15 @@ h1 {
   background: #3b3b3b;
 }
 
+.navbar {
+  background-color: rgba(89, 190, 230, 0.889);
+  border-radius: 1.3rem;
+}
+
+.nav-link {
+  font-size: 2rem;
+}
+
 .card {
   background-color: #F7EFE6 !important;
   color: #212529 !important;

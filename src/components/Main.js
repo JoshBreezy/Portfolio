@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import DeskProj from './DeskProj';
 import MobProj from './MobProj';
 import Contact from './Contact';
@@ -55,15 +56,10 @@ export default function Main() {
     });
 
     return (
-        <div style={{
-            backgroundAttachment: 'fixed',
-            backgroundImage: `url(${process.env.PUBLIC_URL + 'images/Josh.jpg'})`,
-            backgroundSize: '100vh auto',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-        }} >
+        <div>
             <div className='container d-flex justify-content-end'>
-                { currentUser? <Button className='m-3' color='primary' onClick={handleLogout}>Log Out</Button> : <Button className='m-3' color='primary' onClick={toggleModal} >
+                { currentUser && <Link to='/UserSettings'><Button className='m-3' color='primary'>User Settings</Button></Link>}
+                { currentUser?<Button className='m-3' color='primary' onClick={handleLogout}>Log Out</Button> : <Button className='m-3' color='primary' onClick={toggleModal} >
                     Create Account / Login
                 </Button>}
             </div>
@@ -82,7 +78,7 @@ export default function Main() {
             <animated.div style={slideLeft} className= 'container'>
                 <div className='row'>
                     <div className='col-auto'>
-                        <h1 style={{ margin: '3rem', fontSize: '3rem', padding: '1rem', backgroundColor: 'hsla(0,0%, 100%, .75', borderRadius: '2rem'}}>Josh Brazinski</h1>
+                        <h1 style={{ margin: '3rem', fontSize: '3rem', padding: '1.5rem', backgroundColor: 'hsla(0,0%, 100%, .75', borderRadius: '2rem' }}>Josh Brazinski</h1>
                     </div>
                 </div>
             </animated.div>
@@ -109,7 +105,7 @@ export default function Main() {
                         <h1 style={{ margin: '3rem', fontSize: '3rem', padding: '1rem', backgroundColor: 'hsla(0,0%, 100%, .75', borderRadius: '2rem'}}>Blog</h1>
                     </div>
                 </div>
-                <div className="row">
+                <div className='row'>
                     <div className='col col-md-8 col-lg-11 m-auto'>
                         {isMobile? <MobBlog /> : <DeskBlog /> }
                     </div>
