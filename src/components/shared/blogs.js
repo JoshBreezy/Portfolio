@@ -140,5 +140,12 @@ export const BLOGS = [
         a user in auth, and in the DB, then sends you an email with a link to confirm your given email address. Now that I have those setup, I crated a new branch for installing router. Until now I really 
         wanted to keep this a single page app, but I do think it will make more sense to have at least one seperate page for handling user settings. I think this will be more secure as well because I can 
         setup private path's that are only accessible to the current user. As much as I want to start working on the blog element, I should probably get the user settings together first. Wish me luck!`
+    },
+    {
+        id: 18,
+        title: 'Functionality is fun',
+        date: '10-06-2022 6:40am',
+        content: `Well, I've added a user settings page. It's been a little difficult learining the correct way to call the firebase info and write new info without deleting old info, but with a bit 
+        of logic and object destructuring, I think I have it working so far. React router is a "breez". I'll continue adding some security into the mix before publishing though.`
     }
 ]
