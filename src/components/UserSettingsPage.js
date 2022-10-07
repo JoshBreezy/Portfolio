@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Nav, Navbar, NavItem, Row, Col, Button, Form, FormGroup, Label, Input, FormText, Alert, Toast, ToastHeader, ToastBody } from 'reactstrap';
+import {Row, Col, Button, Form, FormGroup, Label, Input,Alert, Toast, ToastHeader, ToastBody } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { useSpring, animated, config } from 'react-spring';
 import { isMobile } from 'react-device-detect';
@@ -9,7 +9,8 @@ import { useDB } from '../contexts/DBContext';
 export default function UserSettingsPage() {
 
     const { updateUserSettings, getUser } = useDB();
-    const { currentUser, updateUserEmail, sendVerifyEmail, logout } = useAuth();
+    
+    const { currentUser, updateUserEmail, sendVerifyEmail } = useAuth();
 
     const [userDBInfo, setUserDBInfo] = useState({});
 
@@ -111,13 +112,6 @@ export default function UserSettingsPage() {
 
     return (
         <>
-            <Navbar container='sm' light >
-                <Nav className="me-auto" navbar>
-                    <NavItem>
-                        <Link to='/' className='nav-link' >Home</Link>
-                    </NavItem>
-                </Nav>
-            </Navbar>
             <animated.div style={slideLeft} className='container'>
                 <div className='row'>
                     <div className='col-auto'>

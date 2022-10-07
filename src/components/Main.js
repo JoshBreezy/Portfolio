@@ -1,45 +1,16 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import DeskProj from './DeskProj';
 import MobProj from './MobProj';
 import Contact from './Contact';
 import About from './About';
 import DeskBlog from './DeskBlog';
 import MobBlog from './MobBlog';
-import CreateAccount from './CreateAccount';
-import Login from './Login';
-import { useAuth } from '../contexts/AuthContext';
 import { useSpring, animated, config } from 'react-spring';
 import { isMobile } from 'react-device-detect';
-import { Button } from 'reactstrap';
 
 
 
 export default function Main() {
-    const [error, setError] = useState('');
-    const [modalOpen, setModal] = useState(false);
-    const [loginOrSign, setLogOrSign] = useState(false);
-    const toggleModal = () => setModal(!modalOpen);
-    const toggleSign = () => setLogOrSign(!loginOrSign);
-    const [loginOutcome, setLoginOutcome] = useState();
-    const toggleLogSign = () => {
-        setModal(!modalOpen)
-        setLogOrSign(!loginOrSign)
-    }
-
-    const { currentUser, logout } = useAuth()
-
-    async function handleLogout() {
-        setError("")
-    
-        try {
-          await logout()
-          setLoginOutcome()
-        } catch {
-          setError("Failed to log out")
-        }
-    }
-
 
     const slideW = 0 - window.innerWidth;
     
@@ -56,25 +27,7 @@ export default function Main() {
     });
 
     return (
-        <div>
-            <div className='container d-flex justify-content-end'>
-                { currentUser && <Link to='/UserSettings'><Button className='m-3' color='primary'>User Settings</Button></Link>}
-                { currentUser?<Button className='m-3' color='primary' onClick={handleLogout}>Log Out</Button> : <Button className='m-3' color='primary' onClick={toggleModal} >
-                    Create Account / Login
-                </Button>}
-            </div>
-                <CreateAccount 
-                    isOpen={modalOpen} 
-                    toggle={toggleModal} 
-                    toggleLogSign={toggleLogSign}
-                />
-                <Login 
-                    isOpen={loginOrSign} 
-                    toggle={toggleSign} 
-                    toggleLogSign={toggleLogSign} 
-                    loginOutcome={loginOutcome} 
-                    setLoginOutcome={setLoginOutcome}
-                />
+        <div>            
             <animated.div style={slideLeft} className= 'container'>
                 <div className='row'>
                     <div className='col-auto'>

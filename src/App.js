@@ -1,13 +1,16 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import DeskNav from './components/DeskNav';
+import MobNav from './components/MobNav';
 import Main from './components/Main';
 import UserSettingsPage from './components/UserSettingsPage';
-import { AuthProvider } from './contexts/AuthContext';
-import { DBProvider } from './contexts/DBContext'
 import { Route, Routes } from 'react-router-dom';
+import { isMobile } from 'react-device-detect';
 
 function App() {
+  
+
   return (
     <div style={{
       minHeight: '100vh',
@@ -17,15 +20,12 @@ function App() {
       backgroundSize: '100vh auto',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
-  }} >
-      <AuthProvider>
-        <DBProvider>
-          <Routes>
-            <Route path='/' element={<Main />} />
-            <Route path='/userSettings' element={<UserSettingsPage />} />
-          </Routes>
-        </DBProvider>
-      </AuthProvider>
+      }}>
+      { isMobile? <MobNav /> : <DeskNav />}
+      <Routes>
+        <Route path='/' element={<Main />} />
+        <Route path='/userSettings' element={<UserSettingsPage />} />
+      </Routes>
     </div>
   );
 }
