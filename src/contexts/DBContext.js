@@ -11,13 +11,27 @@ export function DBProvider({ children }){
 
     function addCurrentUserToDB() {
         return db.ref('users/' + auth.currentUser.uid).set({
-            uid: auth.currentUser.uid,
             email: auth.currentUser.email
         })
     }
+    function updateUserSettings(email, userName) {
+        const newValues = {
+            'email': email,
+            'userName': userName
+        }
+        const update = {}
+        update['users/' + auth.currentUser.uid] = newValues
+        return db.ref().update(update)
+    }
+
+    function getUser(){
+        return db.ref('users/' + auth.currentUser.uid).once('value')
+    }
 
     const value = {
-        addCurrentUserToDB
+        addCurrentUserToDB,
+        updateUserSettings,
+        getUser
     }
 
     return (

@@ -3,7 +3,7 @@ import { Card, Row, Col, CardTitle, CardText, CardBody } from 'reactstrap';
 
 export default function About () {
     return(
-        <Row content>
+        <Row>
             <Col>
                 <Card>
                     <CardBody>
