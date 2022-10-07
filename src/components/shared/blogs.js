@@ -147,5 +147,12 @@ export const BLOGS = [
         date: '10-06-2022 6:40am',
         content: `Well, I've added a user settings page. It's been a little difficult learining the correct way to call the firebase info and write new info without deleting old info, but with a bit 
         of logic and object destructuring, I think I have it working so far. React router is a "breez". I'll continue adding some security into the mix before publishing though.`
+    },
+    {
+        id:19,
+        title: 'Users are here!',
+        date: '10-07-2022 4:49am',
+        content: `Users are here! There is a basic login/logout function, and user settings page with email reset, and username setup. I know I should have the system check for availability when 
+        choosing a username before I push this, but I can't wait! Hope there aren't too many bugs lol`
     }
 ]

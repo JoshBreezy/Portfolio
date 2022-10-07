@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import {Row, Col, Button, Form, FormGroup, Label, Input,Alert, Toast, ToastHeader, ToastBody } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import { useSpring, animated, config } from 'react-spring';
-import { isMobile } from 'react-device-detect';
 import { useAuth } from '../contexts/AuthContext';
 import { useDB } from '../contexts/DBContext';
 
 export default function UserSettingsPage() {
 
     const { updateUserSettings, getUser } = useDB();
-    
+
     const { currentUser, updateUserEmail, sendVerifyEmail } = useAuth();
 
     const [userDBInfo, setUserDBInfo] = useState({});
