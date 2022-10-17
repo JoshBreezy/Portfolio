@@ -6,7 +6,7 @@ import { useDB } from '../contexts/DBContext';
 
 export default function UserSettingsPage() {
 
-    const { updateUserSettings, getUser } = useDB();
+    const { updateUserSettings, getUser, checkUnavailNames } = useDB();
 
     const { currentUser, updateUserEmail, sendVerifyEmail } = useAuth();
 
@@ -19,6 +19,8 @@ export default function UserSettingsPage() {
     const [formState, setFormState] = useState({})
 
     const [emailToast, setEmailToast] = useState(false);
+
+    const [unavailable, setUnavailable] = useState();
 
     const toggleEmailToast = () => {
         setEmailToast(true);
@@ -64,6 +66,7 @@ export default function UserSettingsPage() {
 
     useEffect(() => {
         callDB()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     function handleForm(e) {
@@ -92,10 +95,26 @@ export default function UserSettingsPage() {
         }
 
         try {
+            await checkUnavailNames(formState.userName).then((snapshot) => {            
+                console.log(snapshot.val())
+                if (snapshot.val()) {
+                    setUnavailable(false)                                       
+                } else {
+                    setUnavailable(true)
+                    return new Error('UserName is Unavailable')                     
+                }
+            })
+        } catch(err){
+            console.log(JSON.stringify(err))
+            setError(err)
+        }
+
+
+        try {
             setLoading(true);
             const update = {...userDBInfo, ...formState};
             console.log(update);
-            await updateUserSettings(update.email, update.userName)
+            await updateUserSettings(update.email, update.userName, update.ofAge)
             callDB()
         } catch(err) {
             console.log(JSON.stringify(err))
@@ -139,10 +158,13 @@ export default function UserSettingsPage() {
                                 <Label size='lg' sm={3} >Current Email</Label>
                                 <Col sm={4}>
                                     <Label size='lg'>{currentUser.email}</Label>
+                                </Col>                                                           
+                            </FormGroup>
+                            <FormGroup row className='align-items-center'>
+                                <Label size='lg' sm={3}>{currentUser.emailVerified? 'Email has been verified' : 'Email has not been verified'}</Label>
+                                <Col sm={9}>
+                                {!currentUser.emailVerified && <Button onClick={sendVerifyEmail} color='primary' >Resend Verification Email</Button>}
                                 </Col>
-                                <Col sm={4}>
-                                    <Button color='primary' onClick={sendVerifyEmail}>Resend Verification Email</Button>
-                                </Col>                              
                             </FormGroup>
                             <div className='d-flex justify-content-center'>
                                 <Toast isOpen={emailToast} fade className='bg-success'>
@@ -173,7 +195,26 @@ export default function UserSettingsPage() {
                                     <Label size='lg'>{userDBInfo.userName}</Label>
                                 </Col>
                             </FormGroup>
-                            <Button disabled={loading} type="submit" color='primary' onClick={handleSubmit}>Update Settings</Button>
+                            <FormGroup row className='align-items-center'>
+                                <Label size='lg' sm={3}>Are you &gt;= 18 years old?</Label>
+                                <Col sm={9}>
+                                    <Input
+                                        type='select'
+                                        id='ofAge'
+                                        name='ofAge'
+                                        onChange={handleForm}
+                                        bsSize='lg'
+                                    >
+                                        <option value={false}>
+                                            No I am under 18
+                                        </option>
+                                        <option value={true}>
+                                            Yes I am over 18
+                                        </option>
+                                    </Input>                                    
+                                </Col>
+                            </FormGroup>
+                            <Button disabled={loading || unavailable} type="submit" color='primary' onClick={handleSubmit}>Update Settings</Button>
                         </Form>
                     </Col>
                 </Row>

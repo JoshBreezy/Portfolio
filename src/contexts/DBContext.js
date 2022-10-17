@@ -14,14 +14,22 @@ export function DBProvider({ children }){
             email: auth.currentUser.email
         })
     }
-    function updateUserSettings(email, userName) {
+    function updateUserSettings(email, userName, ofAge) {
         const newValues = {
-            'email': email,
-            'userName': userName
+            email: email,
+            userName: userName,
+            ofAge : ofAge
         }
         const update = {}
         update['users/' + auth.currentUser.uid] = newValues
-        return db.ref().update(update)
+        return(
+            db.ref().update(update),
+            db.ref('unavailNames/').push().set({userName})
+        )
+    }
+
+    function checkUnavailNames(userName) {
+        return db.ref('unavailNames/').equalTo(userName, 'userName').get()
     }
 
     function getUser(){
@@ -31,6 +39,7 @@ export function DBProvider({ children }){
     const value = {
         addCurrentUserToDB,
         updateUserSettings,
+        checkUnavailNames,
         getUser
     }
 
