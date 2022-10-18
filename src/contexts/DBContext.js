@@ -28,8 +28,8 @@ export function DBProvider({ children }){
         )
     }
 
-    function checkUnavailNames(userName) {
-        return db.ref('unavailNames/').equalTo(userName, 'userName').get()
+    function checkUnavailNames() {
+        return db.ref('unavailNames/').once('value')
     }
 
     function getUser(){

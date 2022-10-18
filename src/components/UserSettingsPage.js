@@ -74,53 +74,55 @@ export default function UserSettingsPage() {
             ...formState,
             [e.target.name]: e.target.value
         })
+        setUnavailable(false);
+        setError();
     }
 
     async function handleSubmit(e) {
         e.preventDefault();
 
-        if (formState.email) {
+        if (Object.keys(formState).length !== 0) {
+
+            if (formState.email) {
+                try {
+                    setLoading(true);
+                    await updateUserEmail(formState.email);
+                    await sendVerifyEmail();
+                    toggleEmailToast();
+                } catch (err){
+                    setError(err);
+                } finally {
+                    setLoading(false);
+                }
+            }
+    
             try {
                 setLoading(true);
-                setError();
-                await updateUserEmail(formState.email);
-                await sendVerifyEmail();
-                toggleEmailToast();
-            } catch (err){
-                console.log(JSON.stringify(err));
+                await checkUnavailNames(formState.userName).then((snapshot) => { 
+                    snapshot.forEach((bbSnap) => {
+                        if (bbSnap.val().userName === formState.userName) {
+                            setUnavailable(true);
+                            return new Error('Username Unavailable');                      
+                        }
+                        setUnavailable(false);
+                    })
+                })
+            } catch(err){
                 setError(err);
             } finally {
                 setLoading(false);
             }
-        }
-
-        try {
-            await checkUnavailNames(formState.userName).then((snapshot) => {            
-                console.log(snapshot.val())
-                if (snapshot.val()) {
-                    setUnavailable(false)                                       
-                } else {
-                    setUnavailable(true)
-                    return new Error('UserName is Unavailable')                     
-                }
-            })
-        } catch(err){
-            console.log(JSON.stringify(err))
-            setError(err)
-        }
-
-
-        try {
-            setLoading(true);
-            const update = {...userDBInfo, ...formState};
-            console.log(update);
-            await updateUserSettings(update.email, update.userName, update.ofAge)
-            callDB()
-        } catch(err) {
-            console.log(JSON.stringify(err))
-            setError(err)
-        } finally {
-            setLoading(false)
+    
+            try {
+                setLoading(true);
+                const update = {...userDBInfo, ...formState};
+                await updateUserSettings(update.email, update.userName, update.ofAge)
+                callDB()
+            } catch(err) {
+                setError(err)
+            } finally {
+                setLoading(false)
+            }
         }
     }
 
