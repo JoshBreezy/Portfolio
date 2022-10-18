@@ -154,5 +154,12 @@ export const BLOGS = [
         date: '10-07-2022 4:49am',
         content: `Users are here! There is a basic login/logout function, and user settings page with email reset, and username setup. I know I should have the system check for availability when 
         choosing a username before I push this, but I can't wait! Hope there aren't too many bugs lol`
+    },
+    {
+        id:20,
+        title: 'Username availability',
+        date: '10-18-2022 01:33am',
+        content: `Users can now take advantage of the user settings page after creating an account. Options include: UserName, New Email Address, Checking email verification and resending verification 
+        email if needed, and one checkbox to submit that the user is over 18 years old. Only thing missing is a little clean up tp remove a UName from the unavailable list after being changed.`
     }
 ]

@@ -20,7 +20,7 @@ export default function UserSettingsPage() {
 
     const [emailToast, setEmailToast] = useState(false);
 
-    const [unavailable, setUnavailable] = useState();
+    const [unavailable, setUnavailable] = useState(false);
 
     const toggleEmailToast = () => {
         setEmailToast(true);
@@ -98,13 +98,12 @@ export default function UserSettingsPage() {
     
             try {
                 setLoading(true);
-                await checkUnavailNames(formState.userName).then((snapshot) => { 
+                await checkUnavailNames().then((snapshot) => { 
                     snapshot.forEach((bbSnap) => {
                         if (bbSnap.val().userName === formState.userName) {
                             setUnavailable(true);
-                            return new Error('Username Unavailable');                      
+                            throw new Error('Username Unavailable');                      
                         }
-                        setUnavailable(false);
                     })
                 })
             } catch(err){
@@ -112,16 +111,17 @@ export default function UserSettingsPage() {
             } finally {
                 setLoading(false);
             }
-    
-            try {
-                setLoading(true);
-                const update = {...userDBInfo, ...formState};
-                await updateUserSettings(update.email, update.userName, update.ofAge)
-                callDB()
-            } catch(err) {
-                setError(err)
-            } finally {
-                setLoading(false)
+            if (unavailable !== true) {
+                try {
+                    setLoading(true);
+                    const update = {...userDBInfo, ...formState};
+                    await updateUserSettings(update.email, update.userName, update.ofAge)
+                    callDB()
+                } catch(err) {
+                    setError(err)
+                } finally {
+                    setLoading(false)
+                }
             }
         }
     }
