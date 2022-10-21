@@ -98,13 +98,12 @@ export default function UserSettingsPage() {
     
             try {
                 setLoading(true);
-                await checkUnavailNames().then((snapshot) => { 
-                    snapshot.forEach((bbSnap) => {
-                        if (bbSnap.val().userName === formState.userName) {
-                            setUnavailable(true);
-                            throw new Error('Username Unavailable');                      
-                        }
-                    })
+                await checkUnavailNames(formState.userName).then((snapshot) => {
+                    console.log(snapshot.userName) 
+                    if (snapshot.val().userName === formState.userName) {
+                        setUnavailable(true);
+                        throw new Error('Username Unavailable');                      
+                    }
                 })
             } catch(err){
                 setError(err);
@@ -114,6 +113,13 @@ export default function UserSettingsPage() {
             if (unavailable !== true) {
                 try {
                     setLoading(true);
+                    if (userDBInfo.userName) {
+                        await checkUnavailNames(userDBInfo.userName).then((snapshot) => {
+                            snapshot.ref.remove().then((res) => {
+                                console.log(res)
+                            })
+                        })
+                    }
                     const update = {...userDBInfo, ...formState};
                     await updateUserSettings(update.email, update.userName, update.ofAge)
                     callDB()
