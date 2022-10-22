@@ -161,13 +161,5 @@ export const BLOGS = [
         date: '10-18-2022 01:33am',
         content: `Users can now take advantage of the user settings page after creating an account. Options include: UserName, New Email Address, Checking email verification and resending verification 
         email if needed, and one checkbox to submit that the user is over 18 years old. Only thing missing is a little clean up tp remove a UName from the unavailable list after being changed.`
-    },
-    {
-        id:21,
-        title: 'Welp',
-        date: '10-20-2022 7:18pm',
-        content: `I'm throwing in the towel on firebase. I've been tryin for weeks to get all of this working with contexts and I think it's time to try something else. Sadly it feels like I've 
-        wasted all this time working on something that isn't working, but It's better to try something else instead of continuing to grind and struggle. It's a bummer, but I have learned a lot on 
-        the way`
     }
 ]

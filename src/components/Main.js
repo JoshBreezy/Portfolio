@@ -11,16 +11,18 @@ import { isMobile } from 'react-device-detect';
 
 
 export default function Main() {
+
+    const slideW = 0 - window.innerWidth;
     
     const slideLeft = useSpring({ 
-        from: { x: -window.innerWidth }, 
+        from: { x: slideW }, 
         to: { x: 0 }, 
         config: config.molasses,
     });
 
     const fadeIn = useSpring({ 
         from: { opacity: 0 },
-        to: { opacity: 1 }, 
+        to: { opacity:1 }, 
         config: config.slow,
     });
 
