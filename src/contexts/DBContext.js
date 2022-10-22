@@ -24,13 +24,19 @@ export function DBProvider({ children }){
         update['users/' + auth.currentUser.uid] = newValues
         return(
             db.ref().update(update),
-            db.ref('unavailNames/').push().set({userName})
+            db.ref('unavailNames/').push().set(userName)
         )
     }
 
     function checkUnavailNames() {
-        return db.ref('unavailNames/').once('value')
+        return db.ref('unavailNames/').orderByKey().once('value');
     }
+
+    function removeUserFromUnavail(userName) {
+        var removeRef = db.ref('unavailNames/').orderByValue().equalTo(userName).ref;
+        removeRef.remove();
+    }
+
 
     function getUser(){
         return db.ref('users/' + auth.currentUser.uid).once('value')
@@ -40,7 +46,8 @@ export function DBProvider({ children }){
         addCurrentUserToDB,
         updateUserSettings,
         checkUnavailNames,
-        getUser
+        getUser,
+        removeUserFromUnavail
     }
 
     return (

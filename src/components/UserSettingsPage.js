@@ -6,7 +6,7 @@ import { useDB } from '../contexts/DBContext';
 
 export default function UserSettingsPage() {
 
-    const { updateUserSettings, getUser, checkUnavailNames } = useDB();
+    const { updateUserSettings, getUser, checkUnavailNames, removeUserFromUnavail } = useDB();
 
     const { currentUser, updateUserEmail, sendVerifyEmail } = useAuth();
 
@@ -20,7 +20,7 @@ export default function UserSettingsPage() {
 
     const [emailToast, setEmailToast] = useState(false);
 
-    const [unavailable, setUnavailable] = useState();
+    const [available, setAvailable] = useState(true);
 
     const toggleEmailToast = () => {
         setEmailToast(true);
@@ -74,7 +74,7 @@ export default function UserSettingsPage() {
             ...formState,
             [e.target.name]: e.target.value
         })
-        setUnavailable(false);
+        setAvailable(true);
         setError();
     }
 
@@ -98,30 +98,34 @@ export default function UserSettingsPage() {
     
             try {
                 setLoading(true);
-                await checkUnavailNames().then((snapshot) => { 
+                await checkUnavailNames().then((snapshot) => {
+                    console.log(snapshot.val()) 
                     snapshot.forEach((bbSnap) => {
-                        if (bbSnap.val().userName === formState.userName) {
-                            setUnavailable(true);
+                        if (bbSnap.val() === formState.userName) {
+                            setAvailable(false);
                             throw new Error('Username Unavailable');                      
                         }
                     })
                 })
+                if (available) {
+                    try {
+                        setLoading(true);
+                        if (userDBInfo.userName){
+                            removeUserFromUnavail(userDBInfo.userName)                    
+                        }
+                        const update = {...userDBInfo, ...formState};
+                        await updateUserSettings(update.email, update.userName, update.ofAge)
+                        callDB()
+                    } catch(err) {
+                        setError(err)
+                    } finally {
+                        setLoading(false)
+                    }
+                }
             } catch(err){
                 setError(err);
             } finally {
                 setLoading(false);
-            }
-            if (unavailable !== true) {
-                try {
-                    setLoading(true);
-                    const update = {...userDBInfo, ...formState};
-                    await updateUserSettings(update.email, update.userName, update.ofAge)
-                    callDB()
-                } catch(err) {
-                    setError(err)
-                } finally {
-                    setLoading(false)
-                }
             }
         }
     }
@@ -216,7 +220,7 @@ export default function UserSettingsPage() {
                                     </Input>                                    
                                 </Col>
                             </FormGroup>
-                            <Button disabled={loading || unavailable} type="submit" color='primary' onClick={handleSubmit}>Update Settings</Button>
+                            <Button disabled={loading || available === false} type="submit" color='primary' onClick={handleSubmit}>Update Settings</Button>
                         </Form>
                     </Col>
                 </Row>
