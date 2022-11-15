@@ -6,7 +6,7 @@ import { useDB } from '../contexts/DBContext';
 
 export default function UserSettingsPage() {
 
-    const { updateUserSettings, getUser, checkUnavailNames, removeUserFromUnavail } = useDB();
+    const { updateUserSettings, getUser, checkUnavailNames, removeFromUnavail } = useDB();
 
     const { currentUser, updateUserEmail, sendVerifyEmail } = useAuth();
 
@@ -98,20 +98,22 @@ export default function UserSettingsPage() {
     
             try {
                 setLoading(true);
-                await checkUnavailNames().then((snapshot) => {
+                await checkUnavailNames(formState.userName).then((snapshot) => {
                     console.log(snapshot.val()) 
-                    snapshot.forEach((bbSnap) => {
-                        if (bbSnap.val() === formState.userName) {
-                            setAvailable(false);
-                            throw new Error('Username Unavailable');                      
-                        }
-                    })
+                    if (snapshot.exists()) {
+                        setAvailable(false);
+                        throw new Error('Username Unavailable');
+                    }
                 })
                 if (available) {
                     try {
                         setLoading(true);
                         if (userDBInfo.userName){
-                            removeUserFromUnavail(userDBInfo.userName)                    
+                            await checkUnavailNames(userDBInfo.userName).then((snapshot) => {                                
+                                console.log(Object.keys(snapshot.val()));
+                                const key = Object.keys(snapshot.val())
+                                removeFromUnavail(key[0]);
+                            })                                             
                         }
                         const update = {...userDBInfo, ...formState};
                         await updateUserSettings(update.email, update.userName, update.ofAge)

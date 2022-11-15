@@ -28,13 +28,12 @@ export function DBProvider({ children }){
         )
     }
 
-    function checkUnavailNames() {
-        return db.ref('unavailNames/').orderByKey().once('value');
+    function checkUnavailNames(userName) {
+        return db.ref('unavailNames/').orderByValue().equalTo(userName).once('value');
     }
 
-    function removeUserFromUnavail(userName) {
-        var removeRef = db.ref('unavailNames/').orderByValue().equalTo(userName).ref;
-        removeRef.remove();
+    function removeFromUnavail(key) {
+        return db.ref(`unavailNames/${key}`).remove();
     }
 
 
@@ -47,7 +46,7 @@ export function DBProvider({ children }){
         updateUserSettings,
         checkUnavailNames,
         getUser,
-        removeUserFromUnavail
+        removeFromUnavail
     }
 
     return (
