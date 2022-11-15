@@ -161,5 +161,12 @@ export const BLOGS = [
         date: '10-18-2022 01:33am',
         content: `Users can now take advantage of the user settings page after creating an account. Options include: UserName, New Email Address, Checking email verification and resending verification 
         email if needed, and one checkbox to submit that the user is over 18 years old. Only thing missing is a little clean up tp remove a UName from the unavailable list after being changed.`
+    },
+    {
+        id: 21,
+        title: 'Back to the grind stone',
+        date: '11-15-2022 01:00am',
+        content: `Well, it's been a while since I've written a blog. I've spent the last couple weeks taking a break from working on the site, and instead I've been setting up a legit linux server.
+        So now that I've had such trouble with firebase, it's officially time to write my own data-base. Hopefully I'll have more success.`
     }
 ]
