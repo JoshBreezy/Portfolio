@@ -99,7 +99,6 @@ export default function UserSettingsPage() {
             try {
                 setLoading(true);
                 await checkUnavailNames(formState.userName).then((snapshot) => {
-                    console.log(snapshot.val()) 
                     if (snapshot.exists()) {
                         setAvailable(false);
                         throw new Error('Username Unavailable');
@@ -109,9 +108,8 @@ export default function UserSettingsPage() {
                     try {
                         setLoading(true);
                         if (userDBInfo.userName){
-                            await checkUnavailNames(userDBInfo.userName).then((snapshot) => {                                
-                                console.log(Object.keys(snapshot.val()));
-                                const key = Object.keys(snapshot.val())
+                            await checkUnavailNames(userDBInfo.userName).then((snapshot) => {
+                                const key = Object.keys(snapshot.val());
                                 removeFromUnavail(key[0]);
                             })                                             
                         }
