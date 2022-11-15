@@ -168,5 +168,12 @@ export const BLOGS = [
         date: '11-15-2022 01:00am',
         content: `Well, it's been a while since I've written a blog. I've spent the last couple weeks taking a break from working on the site, and instead I've been setting up a legit linux server.
         So now that I've had such trouble with firebase, it's officially time to write my own data-base. Hopefully I'll have more success.`
+    },
+    {
+        id: 22,
+        title: 'Breakthrough',
+        date: '11-15-2022 12:13pm',
+        content: `You may have noticed a trend here. At least twice I've said I was done with firebase, and followed that up with a post about firebase. Well today is no different lol. I spent 
+        the entire night working on firebase db, and I believe it's working the way I intend. It's finally time to design the blog itself.`
     }
 ]
