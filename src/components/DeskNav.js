@@ -8,6 +8,7 @@ import Login from './Login';
 export default function DeskNav() {
 
 
+    // eslint-disable-next-line no-unused-vars
     const [error, setError] = useState();
     const [modalOpen, setModal] = useState(false);
     const [loginOrSign, setLogOrSign] = useState(false);
@@ -47,6 +48,9 @@ export default function DeskNav() {
                 { currentUser?<Link className='nav-link' onClick={handleLogout}>Log Out</Link> : <Link className='nav-link' onClick={toggleModal} >
                   Create Account / Login
                 </Link>}
+              </NavItem>
+              <NavItem>
+                <Link to='/blogs' className='nav-link' >Blogs</Link>
               </NavItem>
             </Nav>
           </Navbar>
