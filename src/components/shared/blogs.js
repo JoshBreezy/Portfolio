@@ -197,5 +197,14 @@ export const BLOGS = [
         date: '11-15-2022 12:13pm',
         content: `You may have noticed a trend here. At least twice I've said I was done with firebase, and followed that up with a post about firebase. Well today is no different lol. I spent 
         the entire night working on firebase db, and I believe it's working the way I intend. It's finally time to design the blog itself.`
+    },
+    {
+        id: 23,
+        title: 'Starting to get excited again',
+        author: 'Jarsh',
+        date: '11-19-2022 7:31am',
+        content: `I'm almost finished putting together a layout for the new blogs page. As of now it lists the blogs I've been 
+        storing in the blogs.js file and manually pushing with the rest of the repo, but once the layout is finished I'll get 
+        it all linked up to the database and write an input component for new blogs and comments.`
     }
 ]
