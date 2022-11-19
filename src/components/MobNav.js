@@ -8,6 +8,7 @@ import Login from './Login';
 export default function MobNav() {
 
 
+    // eslint-disable-next-line no-unused-vars
     const [error, setError] = useState();
     const [modalOpen, setModal] = useState(false);
     const [loginOrSign, setLogOrSign] = useState(false);
@@ -23,6 +24,11 @@ export default function MobNav() {
         setLogOrSign(!loginOrSign)
     }
 
+    const handleLogin= () => {
+        toggleModal();
+        toggleNavbar();
+    }
+
     async function handleLogout() {
         setError("")
     
@@ -32,6 +38,8 @@ export default function MobNav() {
           navigate('/')
         } catch {
           setError("Failed to log out")
+        } finally {
+            toggleNavbar();
         }
       }
 
@@ -42,13 +50,16 @@ export default function MobNav() {
             <Collapse isOpen={!collapsed} navbar>
                 <Nav className="flex-col" navbar>
                     <NavItem>
-                        <Link to='/' className='nav-link' >Home</Link>
+                        <Link to='/' className='nav-link' onClick={toggleNavbar} >Home</Link>
                     </NavItem>
                     <NavItem>
-                        { currentUser && <Link to='/UserSettings' className='nav-link' >User-Settings</Link>}
+                        <Link to='/blogs' className='nav-link' onClick={toggleNavbar} >Blog</Link>
                     </NavItem>
                     <NavItem>
-                        { currentUser?<Link className='nav-link' onClick={handleLogout}>Log Out</Link> : <Link className='nav-link' onClick={toggleModal} >
+                        { currentUser && <Link to='/UserSettings' className='nav-link' onClick={toggleNavbar} >User-Settings</Link>}
+                    </NavItem>
+                    <NavItem>
+                        { currentUser?<Link className='nav-link' onClick={handleLogout}>Log Out</Link> : <Link className='nav-link' onClick={handleLogin} >
                         Create Account / Login
                         </Link>}
                     </NavItem>

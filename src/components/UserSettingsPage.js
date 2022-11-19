@@ -157,9 +157,6 @@ export default function UserSettingsPage() {
                     </div>
                 </div>
             </animated.div>
-            <div className='d-flex justify-content-center'>
-                {updateToast && <Alert color='success'>User Settings Updated Successfully</Alert>}
-            </div>
             <animated.div style={fadeIn} className='container pb-3 form-bg'>
                 <Row>
                     <Col>
@@ -242,6 +239,9 @@ export default function UserSettingsPage() {
                                 </Col>
                                 {userDBInfo.ofAge === 'true' ? <FormText size='lg' color='success'>User is 18 or older</FormText> : <FormText size='lg' color='danger'>Adult language is filtered for underaged users</FormText>}
                             </FormGroup>
+                            <div className='d-flex justify-content-center'>
+                                {updateToast && <Alert color='success'>User Settings Updated Successfully</Alert>}
+                            </div>
                             <Button disabled={loading || available === false} type="submit" color='primary' onClick={handleSubmit}>Update Settings</Button>
                         </Form>
                     </Col>
