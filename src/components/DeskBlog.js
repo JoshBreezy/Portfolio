@@ -42,7 +42,7 @@ export default function DeskBlog() {
       onExited={() => setAnimating(false)}
       key={blog.id}
     >
-      <Card className='p-5' style={{ height: '35rem'}}>
+      <Card className='p-5' style={{ height: '35rem' }}>
         <CardTitle tag='h3'>{blog.title}</CardTitle>
         <CardSubtitle>{blog.date}</CardSubtitle>
         <CardBody className="p-5 d-flex align-items-center">
@@ -58,7 +58,7 @@ export default function DeskBlog() {
       activeIndex={activeIndex}
       next={next}
       previous={previous}
-      interval= {0}
+      interval={0}
       dark
     >
       <CarouselIndicators

@@ -53,7 +53,7 @@ export default function MobNav() {
                         <Link to='/' className='nav-link' onClick={toggleNavbar} >Home</Link>
                     </NavItem>
                     <NavItem>
-                        <Link to='/blogs' className='nav-link' onClick={toggleNavbar} >Blog</Link>
+                        <Link to='/blogs' className='nav-link' onClick={toggleNavbar} >Blogs</Link>
                     </NavItem>
                     <NavItem>
                         { currentUser && <Link to='/UserSettings' className='nav-link' onClick={toggleNavbar} >User-Settings</Link>}

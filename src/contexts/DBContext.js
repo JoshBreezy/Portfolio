@@ -44,13 +44,23 @@ export function DBProvider({ children }){
         return db.ref('users/' + auth.currentUser.uid).once('value')
     }
 
+    function addBlog(author, title, content){
+        return db.ref('blogs/').push().set({
+            author: author,
+            title: title,
+            content: content,
+            date: Date()
+        })
+    }
+
     const value = {
         addCurrentUserToDB,
         updateUserSettings,
         checkUnavailNames,
         getUser,
         removeFromUnavail,
-        addToUnavailNames
+        addToUnavailNames,
+        addBlog
     }
 
     return (
