@@ -23,9 +23,12 @@ export function DBProvider({ children }){
         const update = {}
         update['users/' + auth.currentUser.uid] = newValues
         return(
-            db.ref().update(update),
-            db.ref('unavailNames/').push().set(userName)
+            db.ref().update(update)
         )
+    }
+
+    function addToUnavailNames(userName) {
+        return db.ref('unavailNames/').push().set(userName)
     }
 
     function checkUnavailNames(userName) {
@@ -46,7 +49,8 @@ export function DBProvider({ children }){
         updateUserSettings,
         checkUnavailNames,
         getUser,
-        removeFromUnavail
+        removeFromUnavail,
+        addToUnavailNames
     }
 
     return (

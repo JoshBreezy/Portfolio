@@ -147,6 +147,11 @@ h1 {
   color: #61dafb;
 }
 
+.form-bg {
+  background-color: rgba(224, 242, 255,.9);
+  border-radius: 1rem
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

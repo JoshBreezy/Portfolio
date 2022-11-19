@@ -42,15 +42,15 @@ export default function DeskNav() {
                 <Link to='/' className='nav-link' >Home</Link>
               </NavItem>
               <NavItem>
+                <Link to='/blogs' className='nav-link' >Blogs</Link>
+              </NavItem>
+              <NavItem>
                 { currentUser && <Link to='/UserSettings' className='nav-link' >User-Settings</Link>}
               </NavItem>
               <NavItem>
                 { currentUser?<Link className='nav-link' onClick={handleLogout}>Log Out</Link> : <Link className='nav-link' onClick={toggleModal} >
                   Create Account / Login
                 </Link>}
-              </NavItem>
-              <NavItem>
-                <Link to='/blogs' className='nav-link' >Blogs</Link>
               </NavItem>
             </Nav>
           </Navbar>

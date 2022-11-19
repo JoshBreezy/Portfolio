@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import {Row, Col, Button, Form, FormGroup, Label, Input,Alert, Toast, ToastHeader, ToastBody } from 'reactstrap';
+import { Row, Col, Button, Form, FormGroup, FormText, Label, Input, Alert, Toast, ToastHeader, ToastBody } from 'reactstrap';
 import { useSpring, animated, config } from 'react-spring';
 import { useAuth } from '../contexts/AuthContext';
 import { useDB } from '../contexts/DBContext';
 
 export default function UserSettingsPage() {
 
-    const { updateUserSettings, getUser, checkUnavailNames, removeFromUnavail } = useDB();
+    const { updateUserSettings, getUser, checkUnavailNames, removeFromUnavail, addToUnavailNames } = useDB();
 
     const { currentUser, updateUserEmail, sendVerifyEmail } = useAuth();
 
@@ -20,6 +20,8 @@ export default function UserSettingsPage() {
 
     const [emailToast, setEmailToast] = useState(false);
 
+    const [updateToast, setUpdateToast] = useState(false);
+
     const [available, setAvailable] = useState(true);
 
     const toggleEmailToast = () => {
@@ -27,6 +29,13 @@ export default function UserSettingsPage() {
         setTimeout(() => {
             setEmailToast(false);
         }, 3000)
+    }
+
+    const toggleUpdateToast = () => {
+        setUpdateToast(true);
+        setTimeout(() => {
+            setUpdateToast(false);
+        }, 2000)
     }
 
     const slideW = 0 - window.innerWidth;
@@ -66,7 +75,7 @@ export default function UserSettingsPage() {
 
     useEffect(() => {
         callDB()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     function handleForm(e) {
@@ -89,44 +98,50 @@ export default function UserSettingsPage() {
                     await updateUserEmail(formState.email);
                     await sendVerifyEmail();
                     toggleEmailToast();
-                } catch (err){
+                } catch (err) {
                     setError(err);
-                } finally {
-                    setLoading(false);
                 }
-            }
-    
-            try {
-                setLoading(true);
-                await checkUnavailNames(formState.userName).then((snapshot) => {
-                    if (snapshot.exists()) {
-                        setAvailable(false);
-                        throw new Error('Username Unavailable');
-                    }
-                })
-                if (available) {
+                if (formState.userName) {
                     try {
-                        setLoading(true);
-                        if (userDBInfo.userName){
-                            await checkUnavailNames(userDBInfo.userName).then((snapshot) => {
-                                const key = Object.keys(snapshot.val());
-                                removeFromUnavail(key[0]);
-                            })                                             
+                        await checkUnavailNames(formState.userName).then((snapshot) => {
+                            if (snapshot.exists()) {
+                                setAvailable(false);
+                                throw new Error('Username Unavailable');
+                            }
+                        })
+                        if (available) {
+                            try {
+                                if (userDBInfo.userName) {
+                                    await checkUnavailNames(userDBInfo.userName).then((snapshot) => {
+                                        const key = Object.keys(snapshot.val());
+                                        removeFromUnavail(key[0]);
+                                    })
+                                }
+                                try {
+                                    await addToUnavailNames(formState.userName)
+                                } catch (err) {
+                                    setError(err)
+                                }
+                            } catch (err) {
+                                setError(err)
+                            }
                         }
-                        const update = {...userDBInfo, ...formState};
-                        await updateUserSettings(update.email, update.userName, update.ofAge)
-                        callDB()
-                    } catch(err) {
+                    } catch (err) {
                         setError(err)
-                    } finally {
-                        setLoading(false)
                     }
                 }
-            } catch(err){
-                setError(err);
-            } finally {
-                setLoading(false);
             }
+        }
+        try {
+            const update = { ...userDBInfo, ...formState };
+            await updateUserSettings(update.email, update.userName, update.ofAge)
+            callDB()
+        } catch (err) {
+            setError(err)
+            console.log(err)
+        } finally {
+            setLoading(false);
+            toggleUpdateToast();
         }
     }
 
@@ -134,7 +149,7 @@ export default function UserSettingsPage() {
 
 
     return (
-        <>
+        <div className='pb-4'>
             <animated.div style={slideLeft} className='container'>
                 <div className='row'>
                     <div className='col-auto'>
@@ -142,11 +157,14 @@ export default function UserSettingsPage() {
                     </div>
                 </div>
             </animated.div>
-            <animated.div style={fadeIn} className='container'>
+            <div className='d-flex justify-content-center'>
+                {updateToast && <Alert color='success'>User Settings Updated Successfully</Alert>}
+            </div>
+            <animated.div style={fadeIn} className='container pb-3 form-bg'>
                 <Row>
                     <Col>
                         <Form>
-                            { error && <Alert color='danger'>{error.message}</Alert> }
+                            {error && <Alert color='danger'>{error.message}</Alert>}
                             <FormGroup row className='align-items-center'>
                                 <Label for='email' size='lg' sm={3}>Update Email</Label>
                                 <Col sm={9}>
@@ -164,12 +182,12 @@ export default function UserSettingsPage() {
                                 <Label size='lg' sm={3} >Current Email</Label>
                                 <Col sm={4}>
                                     <Label size='lg'>{currentUser.email}</Label>
-                                </Col>                                                           
+                                </Col>
                             </FormGroup>
                             <FormGroup row className='align-items-center'>
-                                <Label size='lg' sm={3}>{currentUser.emailVerified? 'Email has been verified' : 'Email has not been verified'}</Label>
+                                {currentUser.emailVerified ? <FormText size='lg' color='success'>Email has been verified</FormText> : <FormText size='lg' sm={3} color='danger'>Email has not been verified</FormText>}
                                 <Col sm={9}>
-                                {!currentUser.emailVerified && <Button onClick={sendVerifyEmail} color='primary' >Resend Verification Email</Button>}
+                                    {!currentUser.emailVerified && <Button onClick={sendVerifyEmail} color='primary' >Resend Verification Email</Button>}
                                 </Col>
                             </FormGroup>
                             <div className='d-flex justify-content-center'>
@@ -196,7 +214,7 @@ export default function UserSettingsPage() {
                                 </Col>
                             </FormGroup>
                             <FormGroup row className='align-items-center'>
-                                <Label size='lg'sm={3}>Current Username</Label>
+                                <Label size='lg' sm={3}>Current Username</Label>
                                 <Col sm={9}>
                                     <Label size='lg'>{userDBInfo.userName}</Label>
                                 </Col>
@@ -211,20 +229,24 @@ export default function UserSettingsPage() {
                                         onChange={handleForm}
                                         bsSize='lg'
                                     >
+                                        <option value={''}>
+
+                                        </option>
                                         <option value={false}>
                                             No I am under 18
                                         </option>
                                         <option value={true}>
                                             Yes I am over 18
                                         </option>
-                                    </Input>                                    
+                                    </Input>
                                 </Col>
+                                {userDBInfo.ofAge === 'true' ? <FormText size='lg' color='success'>User is 18 or older</FormText> : <FormText size='lg' color='danger'>Adult language is filtered for underaged users</FormText>}
                             </FormGroup>
                             <Button disabled={loading || available === false} type="submit" color='primary' onClick={handleSubmit}>Update Settings</Button>
                         </Form>
                     </Col>
                 </Row>
             </animated.div>
-        </>
+        </div>
     )
-}
+};
