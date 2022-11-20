@@ -45,7 +45,7 @@ export default function BlogHome() {
       <div className="container m-3">
         <div className='row'>
           <div className='col'>
-            <Link to='newblog' className='btn btn-primary'>Start new blog</Link>
+            <Link to='/newblog' className='btn btn-primary'>Start new blog</Link>
           </div>
         </div>
       </div>

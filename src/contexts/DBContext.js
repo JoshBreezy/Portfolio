@@ -44,6 +44,10 @@ export function DBProvider({ children }){
         return db.ref('users/' + auth.currentUser.uid).once('value')
     }
 
+    function getUserName(){
+        return db.ref('users/' + auth.currentUser.uid + '/userName').once('value')
+    }
+
     function addBlog(author, title, content){
         return db.ref('blogs/').push().set({
             author: author,
@@ -60,7 +64,8 @@ export function DBProvider({ children }){
         getUser,
         removeFromUnavail,
         addToUnavailNames,
-        addBlog
+        addBlog,
+        getUserName
     }
 
     return (
