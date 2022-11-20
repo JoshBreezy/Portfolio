@@ -48,11 +48,11 @@ export function DBProvider({ children }){
         return db.ref('users/' + auth.currentUser.uid + '/userName').once('value')
     }
 
-    function addBlog(author, title, content){
+    function addBlog(blogPack){
         return db.ref('blogs/').push().set({
-            author: author,
-            title: title,
-            content: content,
+            author: blogPack.author,
+            title: blogPack.title,
+            content: blogPack.content,
             date: Date()
         })
     }

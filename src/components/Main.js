@@ -3,8 +3,7 @@ import DeskProj from './DeskProj';
 import MobProj from './MobProj';
 import Contact from './Contact';
 import About from './About';
-import DeskBlog from './DeskBlog';
-import MobBlog from './MobBlog';
+import { Link } from 'react-router-dom';
 import { useSpring, animated, config } from 'react-spring';
 import { isMobile } from 'react-device-detect';
 
@@ -59,8 +58,8 @@ export default function Main() {
                     </div>
                 </div>
                 <div className='row'>
-                    <div className='col col-md-8 col-lg-11 m-auto'>
-                        {isMobile? <MobBlog /> : <DeskBlog /> }
+                    <div className='col m-3'>
+                        <Link to='/blogs' className='h4' style={{ margin: '3rem', padding: '1rem', backgroundColor: 'rgb(255, 208, 199)', borderRadius: '2rem', color: 'black', textDecoration: 'none' }} >Blogs have been moved to a new location!</Link>
                     </div>
                 </div>
             </animated.div>

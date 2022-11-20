@@ -152,6 +152,14 @@ h1 {
   border-radius: 1rem
 }
 
+.blog-card {
+  height: 60vh;
+}
+
+.blog-text {
+  resize: none;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

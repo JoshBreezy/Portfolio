@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useDB } from '../../contexts/DBContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { useSpring, animated, config } from 'react-spring';
-import { CardHeader, CardText, CardBody, CardFooter, Button, Label, Input, Form, FormGroup } from 'reactstrap';
+import { useNavigate } from 'react-router-dom';
+import { CardHeader, CardText, CardBody, Button, Label, Input, Form, Alert } from 'reactstrap';
 
 export default function NewBlog() {
 
@@ -20,22 +21,55 @@ export default function NewBlog() {
     config: config.slow,
   });
 
-  const { newBlog, getUserName } = useDB();
+  const { addBlog, getUserName } = useDB();
   const { currentUser } = useAuth();
   const [error, setError] = useState();
   const [userName, setUserName] = useState();
   const [formState, setFormState] = useState();
+  const [loading, setLoading] = useState(false);
+  const [blogPosted, setBlogPosted] = useState();
+
+  const navigate = useNavigate();
+
+  const toggleBlogPosted = () => {
+    setBlogPosted(true);
+    setTimeout(() => {
+      setBlogPosted(false);
+    }, 2000)
+  }
 
   async function callForUname() {
     try {
+      setLoading(true);
       await getUserName().then((res) => {
-        console.log(res.val());
         setUserName(res.val())
       })
     } catch (err) {
       setError(err)
-    };
+    } finally {
+      setLoading(false)
+    }
   };
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const blogPack = {
+      author: currentUser.uid,
+      content: formState.content,
+      title: formState.title,
+    }
+    try {
+      setLoading(true);
+      await addBlog(blogPack);
+    } catch(err) {
+      setError(err)
+    } finally {
+      toggleBlogPosted();
+      setFormState();
+      setLoading(false);
+      navigate('/blogs');
+    }
+  }
 
   useEffect(() => {
     callForUname()
@@ -60,16 +94,27 @@ export default function NewBlog() {
           </div>
         </div>
       </animated.div>
-      <animated.div style={fadeIn} className='card'>
+      {error && <Alert color='danger'>{error.message}</Alert>}
+      {blogPosted && <Alert color='success'>Successfully Posted Blog</Alert>}
+      <animated.div style={fadeIn} className='card blog-card'>
         <CardHeader className='row align-items-center'>
           <Form className='align-items-center row'>
             <Label tag={'h2'} className='mb-0 col-2' >{userName}</Label>
-            <Label for='titleInput' size={'lg'} className='col-auto mb-0 p-0' >Title:</Label>
+            <Label for='title' size={'lg'} className='col-auto mb-0 pr-0' >Title:</Label>
             <div className='col-8'>
-              <Input name='titleInput' id='titleInput' onChange={handleForm} />
+              <Input name='title' id='title' onChange={handleForm} />
             </div>
           </Form>
         </CardHeader>
+        <CardBody style={{height: '100%'}} className='d-flex flex-column' >
+          <CardText tag='h5'>Compose your blog here:</CardText>
+          <Form className='d-flex flex-column flex-grow-1 justify-items-center'>
+            <Input type='textarea' name='content' id='content' onChange={handleForm} className='blog-text flex-grow-1' />
+            <div className='row'>
+              <Button type='submit' color='primary' className='col-4 m-auto' disabled={ loading === true } onClick={handleSubmit} >Submit</Button>
+            </div>
+          </Form>
+        </CardBody>
       </animated.div>
     </div>
   );
