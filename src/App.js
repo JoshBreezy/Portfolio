@@ -5,7 +5,8 @@ import DeskNav from './components/DeskNav';
 import MobNav from './components/MobNav';
 import Main from './components/Main';
 import UserSettingsPage from './components/UserSettingsPage';
-import BlogHome from './components/Blogs Page/BlogHome';
+import BlogHome from './components/BlogsPage/BlogHome';
+import NewBlog from './components/BlogsPage/NewBlog';
 import { Route, Routes } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 
@@ -27,6 +28,7 @@ function App() {
         <Route path='/' element={<Main />} />
         <Route path='/userSettings' element={<UserSettingsPage />} />
         <Route path='/blogs' element={<BlogHome />} />
+        <Route path='/newblog' element={<NewBlog />} />
       </Routes>
     </div>
   );

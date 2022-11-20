@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import BlogTable from './BlogTable'
 import { useSpring, animated, config } from "react-spring";
+import { Link } from 'react-router-dom';
+import { Button } from 'reactstrap';
 import { isMobile } from 'react-device-detect';
 
 
@@ -40,6 +42,13 @@ export default function BlogHome() {
           </div>
         </div>
       </animated.div>
+      <div className="container m-3">
+        <div className='row'>
+          <div className='col'>
+            <Link to='newblog' className='btn btn-primary'>Start new blog</Link>
+          </div>
+        </div>
+      </div>
       <BlogTable />
     </div>
   );
