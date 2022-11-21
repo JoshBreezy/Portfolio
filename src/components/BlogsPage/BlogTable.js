@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { Table, Alert } from 'reactstrap';
 import { useDB } from '../../contexts/DBContext';
+import { Link } from 'react-router-dom';
 
 
 export default function BlogTable() {
 
-    const { blogs } = useDB();
+    const { blogs, makeBlogCurrent } = useDB();
     // eslint-disable-next-line no-unused-vars
     const [ error, setError ] = useState();
 
-    console.log(blogs)
 
     return (
         <div className='container'>
@@ -31,9 +31,9 @@ export default function BlogTable() {
                 <tbody>
                     {blogs.map((blog) => {
                         return(
-                            <tr key={blog.key}>
-                                <th>
-                                    {blog.data.title}
+                            <tr key={blog.key} >
+                                <th scope = 'row' >
+                                    <Link to={`/blogs/${blog.key}`} onClick={makeBlogCurrent(blog)} >{blog.data.title}</Link>
                                 </th>
                                 <td>
                                     {blog.data.author}

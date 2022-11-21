@@ -7,11 +7,11 @@ import Main from './components/Main';
 import UserSettingsPage from './components/UserSettingsPage';
 import BlogHome from './components/blogsPage/BlogHome';
 import NewBlog from './components/blogsPage/NewBlog';
+import DisplayBlog from './components/blogsPage/DisplayBlog';
 import { Route, Routes } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 
 function App() {
-  
 
   return (
     <div style={{
@@ -29,6 +29,7 @@ function App() {
         <Route path='/userSettings' element={<UserSettingsPage />} />
         <Route path='/blogs' element={<BlogHome />} />
         <Route path='/newblog' element={<NewBlog />} />
+        <Route path='/blogs/:key' element={<DisplayBlog />} />
       </Routes>
     </div>
   );

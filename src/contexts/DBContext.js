@@ -10,6 +10,7 @@ export function useDB() {
 export function DBProvider({ children }){
 
     const [blogs, setBlogs ] = useState([]);
+    const [ currentBlog, setCurrentBlog ] = useState();
 
     function addCurrentUserToDB() {
         return db.ref('users/' + auth.currentUser.uid).set({
@@ -74,6 +75,12 @@ export function DBProvider({ children }){
         return pullBlogs
     }, [])
 
+    function makeBlogCurrent(blogKey){
+        return (
+            setCurrentBlog(blogKey)
+        )
+    }
+
 
     const value = {
         addCurrentUserToDB,
@@ -84,7 +91,9 @@ export function DBProvider({ children }){
         addToUnavailNames,
         addBlog,
         getUserName,
-        blogs
+        blogs,
+        makeBlogCurrent,
+        currentBlog
     }
 
     return (
