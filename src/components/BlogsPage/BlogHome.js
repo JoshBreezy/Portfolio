@@ -1,5 +1,5 @@
 import React from "react";
-import BlogTable from './BlogTable'
+import BlogTable from './BlogTable';
 import { useSpring, animated, config } from "react-spring";
 import { Link } from 'react-router-dom';
 

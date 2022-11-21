@@ -57,6 +57,10 @@ export function DBProvider({ children }){
         })
     }
 
+    function pullBlogs(){
+        return db.ref('/blogs').once('value')
+    }
+
     const value = {
         addCurrentUserToDB,
         updateUserSettings,
@@ -65,7 +69,8 @@ export function DBProvider({ children }){
         removeFromUnavail,
         addToUnavailNames,
         addBlog,
-        getUserName
+        getUserName,
+        pullBlogs
     }
 
     return (

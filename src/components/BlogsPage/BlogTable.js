@@ -1,33 +1,66 @@
-import React from 'react'
-import { Table } from 'reactstrap';
-import { BLOGS } from "../shared/blogs";
-
-const blogs = BLOGS;
+import React, { useState, useEffect } from 'react'
+import { Table, Alert } from 'reactstrap';
+import { useDB } from '../../contexts/DBContext';
 
 
 export default function BlogTable() {
 
-    const mapBlogs = blogs.map(({...blog}) => (
-        <tr>
-            <th scope='row'>
-                {blog.id}
-            </th>
-            <td>
-                {blog.title}
-            </td>
-            <td>
-                {blog.author}
-            </td>
-            <td>
-                {blog.date}
-            </td>
-        </tr>
-    ))
+    const { pullBlogs } = useDB();
+    const [ error, setError ] = useState();
+    const [ blogs, setBlogs ] = useState([]);
+
+
+    async function getBlogs(){
+        try {
+            await pullBlogs().then((res) => {
+                console.log(res.val())
+                for (const item in res.val()) {
+                    setBlogs(blogs + {...item})
+                    console.log(blogs)
+                }
+            })
+        } catch(err) {
+            setError(err)
+        }
+    }
+
+    useEffect(() => {
+        getBlogs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+
+
+    function MapBlogs () {
+        for (const {...item} in blogs) {
+            const keys = Object.keys(item);
+            const key = keys[0];
+            for (const {...blog} in item) {
+                return (
+                    <tr>
+                        <th scope='row'>
+                            {key}
+                        </th>
+                        <td>
+                            {blog.author}
+                        </td>
+                        <td>
+                            {blog.title}
+                        </td>
+                        <td>
+                            {blog.date}
+                        </td>
+                    </tr>
+                )
+            }
+        }
+    }
 
 
 
     return (
         <div className='container'>
+            {error && <Alert color='danger'>{error.message}</Alert>}
             <Table hover style={{backgroundColor: 'rgba(224, 242, 255,.9)', borderRadius: '1rem'}}>
                 <thead>
                     <tr>
@@ -46,7 +79,7 @@ export default function BlogTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {mapBlogs}
+                    <MapBlogs />
                 </tbody>
             </Table>
         </div>
