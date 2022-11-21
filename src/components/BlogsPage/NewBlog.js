@@ -41,7 +41,7 @@ export default function NewBlog() {
   async function callForUname() {
     try {
       setLoading(true);
-      await getUserName().then((res) => {
+      await getUserName(currentUser.uid).then((res) => {
         setUserName(res.val())
       })
     } catch (err) {
@@ -54,9 +54,10 @@ export default function NewBlog() {
   async function handleSubmit(e) {
     e.preventDefault();
     const blogPack = {
-      author: currentUser.uid,
+      author: userName,
       content: formState.content,
       title: formState.title,
+      authorID: currentUser.uid
     }
     try {
       setLoading(true);

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { db, auth } from '../firebase';
 
 const DBContext = React.createContext()
@@ -8,6 +8,8 @@ export function useDB() {
 };
 
 export function DBProvider({ children }){
+
+    const [blogs, setBlogs ] = useState([]);
 
     function addCurrentUserToDB() {
         return db.ref('users/' + auth.currentUser.uid).set({
@@ -44,8 +46,8 @@ export function DBProvider({ children }){
         return db.ref('users/' + auth.currentUser.uid).once('value')
     }
 
-    function getUserName(){
-        return db.ref('users/' + auth.currentUser.uid + '/userName').once('value')
+    function getUserName(uid){
+        return db.ref('users/' + uid + '/userName').once('value')
     }
 
     function addBlog(blogPack){
@@ -53,13 +55,25 @@ export function DBProvider({ children }){
             author: blogPack.author,
             title: blogPack.title,
             content: blogPack.content,
+            authorID: blogPack.authorID,
             date: Date()
         })
     }
 
-    function pullBlogs(){
-        return db.ref('/blogs').once('value')
-    }
+    
+
+    useEffect(() => {
+        function pullBlogs(){
+            const blogsRef = db.ref('blogs/');
+            blogsRef.once('value').then((res) => {
+                res.forEach((blog) => {
+                    setBlogs(blogs => [...blogs, {key: blog.key, data: blog.val()}])
+                })
+            })
+        }
+        return pullBlogs
+    }, [])
+
 
     const value = {
         addCurrentUserToDB,
@@ -70,7 +84,7 @@ export function DBProvider({ children }){
         addToUnavailNames,
         addBlog,
         getUserName,
-        pullBlogs
+        blogs
     }
 
     return (
