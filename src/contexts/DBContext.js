@@ -9,7 +9,7 @@ export function useDB() {
 
 export function DBProvider({ children }){
 
-    const [blogs, setBlogs ] = useState([]);
+    const [ blogs, setBlogs ] = useState([]);
     const [ currentBlog, setCurrentBlog ] = useState();
     const [ error, setError ] = useState();
 
@@ -67,7 +67,14 @@ export function DBProvider({ children }){
         try {
             blogsRef.on('value', (snapshot) => {
                 snapshot.forEach((blog) => {
-                    setBlogs(blogs => [...blogs, {key: blog.key, data: blog.val()}])
+                    if (blogs.length === 0) {
+                        setBlogs(blogs => [...blogs, {key: blog.key, data: blog.val()}])
+                    }
+                    blogs.forEach((pulledBlog) => {
+                        if (pulledBlog.key !== blog.key) {
+                            setBlogs(blogs => [...blogs, {key: blog.key, data: blog.val()}])
+                        }
+                    })
                 })
             })
         } catch(err) {
@@ -77,6 +84,7 @@ export function DBProvider({ children }){
 
     useEffect(() => {
         pullBlogs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
 
@@ -98,8 +106,7 @@ export function DBProvider({ children }){
         getUserName,
         blogs,
         makeBlogCurrent,
-        currentBlog,
-        pullBlogs
+        currentBlog
     }
 
     return (

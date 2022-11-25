@@ -68,7 +68,9 @@ export default function NewBlog() {
       toggleBlogPosted();
       setFormState();
       setLoading(false);
-      navigate('/blogs');
+      setTimeout(() => {
+        navigate('/blogs');
+      }, 2500)
     }
   }
 
