@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDB } from '../../contexts/DBContext';
-import { CardHeader, CardBody, CardText } from 'reactstrap';
+import { CardHeader, CardBody } from 'reactstrap';
+import AddComment from './AddComment';
 import { useSpring, animated, config } from "react-spring";
 
 export default function DisplayBlog() {
@@ -20,9 +21,7 @@ export default function DisplayBlog() {
         config: config.slow,
     });
 
-
-
-    const { currentBlog } = useDB();
+    const {  currentBlog } = useDB();
 
 
 
@@ -50,10 +49,11 @@ export default function DisplayBlog() {
                     <h3>By: {currentBlog.data.author}</h3>
                 </CardHeader>
                 <CardBody>
-                    <CardText>
-                        <h5>{currentBlog.data.content}</h5>
-                    </CardText>
+                    <h5>{currentBlog.data.content}</h5>
                 </CardBody>
+            </animated.div>
+            <animated.div style={fadeIn}>
+                <AddComment />
             </animated.div>
         </div>
     )

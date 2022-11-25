@@ -28,8 +28,8 @@ function App() {
         <Route path='/' element={<Main />} />
         <Route path='/userSettings' element={<UserSettingsPage />} />
         <Route path='/blogs' element={<BlogHome />} />
+        <Route path='/blogs/displayBlog' element={<DisplayBlog />} />
         <Route path='/newblog' element={<NewBlog />} />
-        <Route path='/blogs/:key' element={<DisplayBlog />} />
       </Routes>
     </div>
   );

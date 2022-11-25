@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Alert } from 'reactstrap';
 import { useDB } from '../../contexts/DBContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 export default function BlogTable() {
 
-    const { blogs, makeBlogCurrent } = useDB();
+    const { blogs, setCurrentBlog } = useDB();
     // eslint-disable-next-line no-unused-vars
     const [ error, setError ] = useState();
+
+    const navigate = useNavigate();
+
+    function handleViewBlog(blog){
+        setCurrentBlog(blog);
+        navigate('/blogs/displayBlog');
+    }
 
     return (
         <div className='container'>
@@ -32,7 +39,7 @@ export default function BlogTable() {
                         return(
                             <tr key={blog.key} >
                                 <th scope = 'row' >
-                                    <Link to={`/blogs/${blog.key}`} onClick={makeBlogCurrent(blog)} >{blog.data.title}</Link>
+                                    <Link onClick={handleViewBlog(blog)} >{blog.data.title}</Link>
                                 </th>
                                 <td>
                                     {blog.data.author}

@@ -11,6 +11,7 @@ export function DBProvider({ children }){
 
     const [ blogs, setBlogs ] = useState([]);
     const [ currentBlog, setCurrentBlog ] = useState();
+    // eslint-disable-next-line no-unused-vars
     const [ error, setError ] = useState();
 
     function addCurrentUserToDB() {
@@ -88,6 +89,15 @@ export function DBProvider({ children }){
         )
     }
 
+    function addComment(commentPack){
+        return db.ref(`blogs/${currentBlog.key}/`).push().set({
+            author: commentPack.author,
+            comment: commentPack.comment,
+            authorID: auth.currentUser.uid,
+            date: Date()
+        })
+    }
+
 
     const value = {
         addCurrentUserToDB,
@@ -100,7 +110,9 @@ export function DBProvider({ children }){
         getUserName,
         blogs,
         makeBlogCurrent,
-        currentBlog
+        setCurrentBlog,
+        currentBlog,
+        addComment
     }
 
     return (
