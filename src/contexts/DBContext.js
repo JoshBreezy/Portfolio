@@ -11,6 +11,7 @@ export function DBProvider({ children }){
 
     const [blogs, setBlogs ] = useState([]);
     const [ currentBlog, setCurrentBlog ] = useState();
+    const [ error, setError ] = useState();
 
     function addCurrentUserToDB() {
         return db.ref('users/' + auth.currentUser.uid).set({
@@ -61,14 +62,23 @@ export function DBProvider({ children }){
         })
     }
 
-    function pullBlogs(){
+    async function pullBlogs(){
         const blogsRef = db.ref('blogs/');
-        blogsRef.on('value', (snapshot) => {
-            snapshot.forEach((blog) => {
-                setBlogs(blogs => [...blogs, {key: blog.key, data: blog.val()}])
+        try {
+            blogsRef.on('value', (snapshot) => {
+                snapshot.forEach((blog) => {
+                    setBlogs(blogs => [...blogs, {key: blog.key, data: blog.val()}])
+                })
             })
-        })
+        } catch(err) {
+            setError(err)
+        }
     }
+
+    useEffect(() => {
+        pullBlogs();
+    },[])
+
 
     function makeBlogCurrent(blogKey){
         return (

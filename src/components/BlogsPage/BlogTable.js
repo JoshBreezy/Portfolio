@@ -6,26 +6,9 @@ import { Link } from 'react-router-dom';
 
 export default function BlogTable() {
 
-    const { pullBlogs, blogs, makeBlogCurrent } = useDB();
+    const { blogs, makeBlogCurrent } = useDB();
     // eslint-disable-next-line no-unused-vars
     const [ error, setError ] = useState();
-    const [ loading, setLoading ] = useState(false);
-
-    async function callDB(){
-        try{
-            setLoading(true);
-            await pullBlogs();
-        } catch(err) {
-            setError(err);
-        } finally {
-            setLoading(false);
-        }
-    }
-
-    useEffect(() => {
-        callDB();
-    },[])
-
 
     return (
         <div className='container'>
