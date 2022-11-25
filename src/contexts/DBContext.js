@@ -70,11 +70,14 @@ export function DBProvider({ children }){
                     if (blogs.length === 0) {
                         setBlogs(blogs => [...blogs, {key: blog.key, data: blog.val()}])
                     }
-                    blogs.forEach((pulledBlog) => {
-                        if (pulledBlog.key !== blog.key) {
-                            setBlogs(blogs => [...blogs, {key: blog.key, data: blog.val()}])
-                        }
-                    })
+                    if (blogs.length !== 0) {
+                        blogs.forEach((pulledBlog) => {
+                            if (pulledBlog.key !== blog.key) {
+                                console.log(pulledBlog.key, blog.key)
+                                setBlogs(blogs => [...blogs, {key: blog.key, data: blog.val()}])
+                            }
+                        })
+                    }
                 })
             })
         } catch(err) {
