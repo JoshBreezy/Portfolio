@@ -66,8 +66,8 @@ export function DBProvider({ children }){
     useEffect(() => {
         function pullBlogs(){
             const blogsRef = db.ref('blogs/');
-            blogsRef.once('value').then((res) => {
-                res.forEach((blog) => {
+            blogsRef.on('value', (snapshot) => {
+                snapshot.forEach((blog) => {
                     setBlogs(blogs => [...blogs, {key: blog.key, data: blog.val()}])
                 })
             })
