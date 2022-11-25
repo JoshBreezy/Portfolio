@@ -61,19 +61,14 @@ export function DBProvider({ children }){
         })
     }
 
-    
-
-    useEffect(() => {
-        function pullBlogs(){
-            const blogsRef = db.ref('blogs/');
-            blogsRef.on('value', (snapshot) => {
-                snapshot.forEach((blog) => {
-                    setBlogs(blogs => [...blogs, {key: blog.key, data: blog.val()}])
-                })
+    function pullBlogs(){
+        const blogsRef = db.ref('blogs/');
+        blogsRef.on('value', (snapshot) => {
+            snapshot.forEach((blog) => {
+                setBlogs(blogs => [...blogs, {key: blog.key, data: blog.val()}])
             })
-        }
-        return pullBlogs
-    }, [])
+        })
+    }
 
     function makeBlogCurrent(blogKey){
         return (
@@ -93,7 +88,8 @@ export function DBProvider({ children }){
         getUserName,
         blogs,
         makeBlogCurrent,
-        currentBlog
+        currentBlog,
+        pullBlogs
     }
 
     return (

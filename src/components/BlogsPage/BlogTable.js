@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Table, Alert } from 'reactstrap';
 import { useDB } from '../../contexts/DBContext';
 import { Link } from 'react-router-dom';
@@ -6,9 +6,25 @@ import { Link } from 'react-router-dom';
 
 export default function BlogTable() {
 
-    const { blogs, makeBlogCurrent } = useDB();
+    const { pullBlogs, blogs, makeBlogCurrent } = useDB();
     // eslint-disable-next-line no-unused-vars
     const [ error, setError ] = useState();
+    const [ loading, setLoading ] = useState(false);
+
+    async function callDB(){
+        try{
+            setLoading(true);
+            await pullBlogs();
+        } catch(err) {
+            setError(err);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        callDB();
+    },[])
 
 
     return (
