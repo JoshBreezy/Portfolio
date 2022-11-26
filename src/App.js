@@ -27,8 +27,9 @@ function App() {
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/userSettings' element={<UserSettingsPage />} />
-        <Route path='/blogs' element={<BlogHome />} />
-        <Route path='/blogs/displayBlog' element={<DisplayBlog />} />
+        <Route path='/blogs' element={<BlogHome />} >
+          <Route path='/blogs/displayBlog:key' element={<DisplayBlog />} />
+        </Route>
         <Route path='/newblog' element={<NewBlog />} />
       </Routes>
     </div>

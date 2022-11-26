@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDB } from '../../contexts/DBContext';
 import { CardHeader, CardBody } from 'reactstrap';
 import AddComment from './AddComment';
+import { useParams } from 'react-router-dom';
 import { useSpring, animated, config } from "react-spring";
 
 export default function DisplayBlog() {
@@ -21,7 +22,16 @@ export default function DisplayBlog() {
         config: config.slow,
     });
 
-    const {  currentBlog } = useDB();
+    const { blogs, setCurrentBlog, currentBlog } = useDB();
+    const { key } = useParams();
+
+    useEffect(() => {
+        blogs.forEach((blog) => {
+            if (blog.key === key) {
+                setCurrentBlog(blog)
+            }
+        })
+    },[])
 
 
 
