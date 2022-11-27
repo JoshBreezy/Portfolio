@@ -1,7 +1,7 @@
 import React from "react";
 import BlogTable from './BlogTable';
 import { useSpring, animated, config } from "react-spring";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 export default function BlogHome() {
@@ -19,6 +19,8 @@ export default function BlogHome() {
     to: { opacity: 1 },
     config: config.slow,
   });
+
+  const navigate = useNavigate();
 
   return (
     <div className="container pb-2">
@@ -46,7 +48,7 @@ export default function BlogHome() {
           </div>
         </div>
       </div>
-      <BlogTable />
+      <BlogTable navigate={navigate} />
     </div>
   );
 }

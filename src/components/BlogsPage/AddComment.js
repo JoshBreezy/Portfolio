@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, Card, CardHeader, CardBody, Alert } from 'reactstrap';
 import { useDB } from '../../contexts/DBContext';
 import { useAuth } from '../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function AddComment() {
 
     const { addComment, getUserName } = useDB();
     const { currentUser } = useAuth();
-    const [formState, setFormState] = useState();
+    const [ formState, setFormState ] = useState();
     const [ userName, setUserName ] = useState();
     const [ loading, setLoading ] = useState(false);
     const [ error, setError ] = useState();
+    const navigate = useNavigate();
 
     async function callForUname() {
         try {
@@ -50,7 +52,11 @@ export default function AddComment() {
         } catch(err) {
             setError(err)
         } finally {
+            setFormState();
             setLoading(false);
+            setTimeout(() => {
+                navigate('/blogs');
+            }, 2500)
         }
     }
 
@@ -65,7 +71,7 @@ export default function AddComment() {
                 <Form className='d-flex'>
                     {error && <Alert color='danger'>{error.message}</Alert>}
                     <Input type='text' id='comment' name='comment' placeholder='Type comment here' onChange={handleForm} className='col mx-2' />
-                    <Button color='primary' type='submit' className='col-3 m-auto' disabled={ loading === true } onSubmit={handleSubmit} >Submit</Button>
+                    <Button color='primary' type='submit' className='col-3 m-auto' disabled={ loading === true } onClick={handleSubmit} >Submit</Button>
                 </Form>
             </CardBody>
         </Card>

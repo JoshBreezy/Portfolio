@@ -10,6 +10,7 @@ export function useDB() {
 export function DBProvider({ children }){
 
     const [ blogs, setBlogs ] = useState([]);
+    const [ comments, setComments ] = useState([]);
     const [ currentBlog, setCurrentBlog ] = useState();
     // eslint-disable-next-line no-unused-vars
     const [ error, setError ] = useState();
@@ -19,6 +20,7 @@ export function DBProvider({ children }){
             email: auth.currentUser.email
         })
     }
+
     function updateUserSettings(email, userName, ofAge) {
         const newValues = {
             email: email,
@@ -63,6 +65,31 @@ export function DBProvider({ children }){
         })
     }
 
+    function addComment(commentPack){
+        return db.ref(`blogs/${currentBlog.key}/comments/`).push().set({
+            author: commentPack.author,
+            comment: commentPack.comment,
+            authorID: auth.currentUser.uid,
+            date: Date()
+        })
+    }
+
+    async function pullComments(){
+        const commentRef = db.ref(`blogs/${currentBlog.key}/comments/`);
+        try {
+            commentRef.on('value', (snapshot) => {
+                setComments([]);
+                snapshot.forEach((comment) => {
+                    setComments(comments => [...comments, {key: comment.key, data:comment.val()}])
+                })
+            })
+        } catch(err) {
+            setError(err)
+        }
+    }
+
+
+
     async function pullBlogs(){
         const blogsRef = db.ref('blogs/');
         try {
@@ -89,15 +116,6 @@ export function DBProvider({ children }){
         )
     }
 
-    function addComment(commentPack){
-        return db.ref(`blogs/${currentBlog.key}/`).push().set({
-            author: commentPack.author,
-            comment: commentPack.comment,
-            authorID: auth.currentUser.uid,
-            date: Date()
-        })
-    }
-
 
     const value = {
         addCurrentUserToDB,
@@ -112,7 +130,9 @@ export function DBProvider({ children }){
         makeBlogCurrent,
         setCurrentBlog,
         currentBlog,
-        addComment
+        addComment,
+        pullComments,
+        comments
     }
 
     return (

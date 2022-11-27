@@ -4,11 +4,17 @@ import { useDB } from '../../contexts/DBContext';
 import { Link } from 'react-router-dom';
 
 
-export default function BlogTable() {
+export default function BlogTable(props) {
 
-    const { blogs, setCurrentBlog, currentBlog } = useDB();
+    const { blogs, setCurrentBlog } = useDB();
     // eslint-disable-next-line no-unused-vars
     const [ error, setError ] = useState();
+
+    const handleDisplayBlog = (e, blog) => {
+        e.preventDefault();
+        setCurrentBlog(blog);
+        props.navigate('/blogs/displayblog');
+    }
 
 
     return (
@@ -32,8 +38,8 @@ export default function BlogTable() {
                     {blogs.map((blog) => {
                         return(
                             <tr key={blog.key} >
-                                <th scope = 'row' >
-                                    <Link to={`/blogs/displayBlog:${blog.key}`} >{blog.data.title}</Link>
+                                <th>
+                                    <Link onClick={(e) => handleDisplayBlog(e, blog)} >{blog.data.title}</Link>
                                 </th>
                                 <td>
                                     {blog.data.author}
