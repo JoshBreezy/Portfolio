@@ -69,6 +69,10 @@ h1 {
   border-radius: 1rem !important;
 }
 
+.comment-card {
+  background-color: #fff8f0 !important;
+}
+
 .card-header {
   padding-bottom: 0 !important;
 }

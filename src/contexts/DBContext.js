@@ -70,6 +70,7 @@ export function DBProvider({ children }){
             author: commentPack.author,
             comment: commentPack.comment,
             authorID: auth.currentUser.uid,
+            visible: true,
             date: Date()
         })
     }

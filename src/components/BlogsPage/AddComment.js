@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, Card, CardHeader, CardBody, Alert } from 'reactstrap';
 import { useDB } from '../../contexts/DBContext';
 import { useAuth } from '../../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
 
 export default function AddComment() {
 
@@ -12,7 +11,6 @@ export default function AddComment() {
     const [ userName, setUserName ] = useState();
     const [ loading, setLoading ] = useState(false);
     const [ error, setError ] = useState();
-    const navigate = useNavigate();
 
     async function callForUname() {
         try {
@@ -54,16 +52,13 @@ export default function AddComment() {
         } finally {
             setFormState();
             setLoading(false);
-            setTimeout(() => {
-                navigate('/blogs');
-            }, 2500)
         }
     }
 
 
 
     return (
-        <Card>
+        <Card className='comment-card'>
             <CardHeader>
                 <h5>Add Comment</h5>
             </CardHeader>

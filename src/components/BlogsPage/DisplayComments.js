@@ -4,31 +4,25 @@ import { useDB } from '../../contexts/DBContext';
 
 export default function DisplayComments() {
 
-    const { comments, pullComments } = useDB();
-
-    pullComments();
-
-    function MapComments(){
-        comments.forEach((comment) => {
-            return(
-                <Card>
-                    <CardHeader>
-                        {comment.data.author}
-                    </CardHeader>
-                    <CardBody>
-                        <CardText>
-                            {comment.data.comment}
-                        </CardText>
-                    </CardBody>
-                </Card>
-            )
-        })
-    }
-
+    const { comments } = useDB();
 
     return (
         <>
-            {comments && <MapComments />}
+            { comments.map((comment) => {
+                return(
+                    <Card key={comment.key} className='comment-card' >
+                        <CardHeader>
+                            <h5>{comment.data.author}</h5>
+                            <p>{comment.data.date}</p>
+                        </CardHeader>
+                        <CardBody>
+                            <CardText>
+                                {comment.data.comment}
+                            </CardText>
+                        </CardBody>
+                    </Card>
+                )
+            })}
         </>
     )
 }
