@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDB } from '../../contexts/DBContext';
-import { CardHeader, CardBody, Card } from 'reactstrap';
+import { useAuth } from '../../contexts/AuthContext';
+import { CardHeader, CardBody, Card, CardFooter, Button } from 'reactstrap';
 import AddComment from './AddComment';
 import DisplayComments from './DisplayComments';
+import { useNavigate } from 'react-router-dom';
 import { useSpring, animated, config } from "react-spring";
 
 export default function DisplayBlog() {
@@ -22,13 +24,19 @@ export default function DisplayBlog() {
         config: config.slow,
     });
 
-    const { currentBlog, pullComments } = useDB();
+    const { currentBlog, pullComments, deleteBlog } = useDB();
+    const { currentUser } = useAuth();
+    const navigate = useNavigate();
 
     useEffect(() => {
         pullComments();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
+    function handleDeleteBlog(key){
+        deleteBlog(key);
+        navigate('/blogs');
+    }
 
 
     return (
@@ -59,6 +67,9 @@ export default function DisplayBlog() {
                     <CardBody>
                         <h5>{currentBlog.data.content}</h5>
                     </CardBody>
+                    <CardFooter>
+                        { currentUser.uid === currentBlog.data.authorID && <Button color='danger' onClick={() => handleDeleteBlog(currentBlog.key)} >Delete Blog</Button> }
+                    </CardFooter>
                 </Card>
                 <DisplayComments />
                 <AddComment />

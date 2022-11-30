@@ -37,7 +37,7 @@ export default function BlogTable(props) {
                 <tbody>
                     {blogs.map((blog) => {
                         return(
-                            <tr key={blog.key} >
+                            <tr key={blog.key} className={blog.data.visible? 'default' : 'd-none'} >
                                 <th>
                                     <Link onClick={(e) => handleDisplayBlog(e, blog)} >{blog.data.title}</Link>
                                 </th>
@@ -45,7 +45,7 @@ export default function BlogTable(props) {
                                     {blog.data.author}
                                 </td>
                                 <td>
-                                    {blog.data.date.toLocaleString()}
+                                    {blog.data.date}
                                 </td>
                             </tr>
                         )

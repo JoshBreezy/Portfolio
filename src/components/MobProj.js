@@ -31,7 +31,7 @@ export default function MobProj() {
                 centerMode = {true}
             >
                 {PROJECTS.map(({...project}) => (
-                    <CustomCard project={project} />
+                    <CustomCard key={project.id} project={project} />
                 ))}
             </Carousel>
         </>

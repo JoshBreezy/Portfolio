@@ -102,7 +102,6 @@ export default function NewBlog() {
       <animated.div style={fadeIn} className='card blog-card'>
         <CardHeader className='row align-items-center'>
           <Form className='align-items-center row'>
-            <Label tag={'h2'} className='mb-0 col-2' >{userName}</Label>
             <Label for='title' size={'lg'} className='col-auto mb-0 pr-0' >Title:</Label>
             <div className='col-8'>
               <Input name='title' id='title' onChange={handleForm} />
@@ -114,7 +113,7 @@ export default function NewBlog() {
           <Form className='d-flex flex-column flex-grow-1 justify-items-center'>
             <Input type='textarea' name='content' id='content' onChange={handleForm} className='blog-text flex-grow-1' />
             <div className='row'>
-              <Button type='submit' color='primary' className='col-4 m-auto' disabled={ loading === true } onClick={handleSubmit} >Submit</Button>
+              <Button type='submit' color='primary' className='col-4 m-auto' disabled={ loading === true } onClick={handleSubmit} >Post</Button>
             </div>
           </Form>
         </CardBody>

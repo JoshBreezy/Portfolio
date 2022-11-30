@@ -35,9 +35,16 @@ export function DBProvider({ children }){
     }
 
     function deleteComment(commentKey){
-
         const update = {}
         update[`blogs/${currentBlog.key}/comments/${commentKey}/visible`] = false;
+        return(
+            db.ref().update(update)
+        )
+    }
+
+    function deleteBlog(blogKey){
+        const update = {}
+        update[`blogs/${currentBlog.key}/visible`] = false;
         return(
             db.ref().update(update)
         )
@@ -70,7 +77,8 @@ export function DBProvider({ children }){
             title: blogPack.title,
             content: blogPack.content,
             authorID: blogPack.authorID,
-            date: Date()
+            visible: true,
+            date: new Date().toLocaleString()
         })
     }
 
@@ -80,7 +88,7 @@ export function DBProvider({ children }){
             comment: commentPack.comment,
             authorID: auth.currentUser.uid,
             visible: true,
-            date: Date()
+            date: new Date().toLocaleString()
         })
     }
 
@@ -135,6 +143,7 @@ export function DBProvider({ children }){
         removeFromUnavail,
         addToUnavailNames,
         addBlog,
+        deleteBlog,
         getUserName,
         blogs,
         makeBlogCurrent,

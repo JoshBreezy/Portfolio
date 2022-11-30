@@ -26,7 +26,7 @@ export default function Main() {
     });
 
     return (
-        <div>            
+        <div className='pb-4'>            
             <animated.div style={slideLeft} className= 'container'>
                 <div className='row'>
                     <div className='col-auto'>
