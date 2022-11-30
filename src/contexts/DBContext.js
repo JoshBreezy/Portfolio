@@ -34,6 +34,15 @@ export function DBProvider({ children }){
         )
     }
 
+    function deleteComment(commentKey){
+
+        const update = {}
+        update[`blogs/${currentBlog.key}/comments/${commentKey}/visible`] = false;
+        return(
+            db.ref().update(update)
+        )
+    }
+
     function addToUnavailNames(userName) {
         return db.ref('unavailNames/').push().set(userName)
     }
@@ -133,7 +142,8 @@ export function DBProvider({ children }){
         currentBlog,
         addComment,
         pullComments,
-        comments
+        comments,
+        deleteComment
     }
 
     return (
