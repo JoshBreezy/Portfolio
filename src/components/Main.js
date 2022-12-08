@@ -30,7 +30,7 @@ export default function Main() {
             <animated.div style={slideLeft} className= 'container'>
                 <div className='row'>
                     <div className='col-auto'>
-                        <h1 style={{ margin: '3rem', fontSize: '3rem', padding: '1.5rem', backgroundColor: 'hsla(0,0%, 100%, .75', borderRadius: '2rem' }}>Josh Brazinski</h1>
+                        <h1 style={{ marginTop: '3rem', marginBottom: '3rem', fontSize: '3rem', padding: '1.5rem', backgroundColor: 'hsla(0,0%, 100%, .75', borderRadius: '2rem' }}>Josh Brazinski</h1>
                     </div>
                 </div>
             </animated.div>
