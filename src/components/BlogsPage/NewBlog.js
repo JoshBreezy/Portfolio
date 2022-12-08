@@ -89,11 +89,11 @@ export default function NewBlog() {
 
 
   return (
-    <div className='container'>
+    <div className='container pb-3'>
       <animated.div style={slideLeft} className= 'container'>
         <div className='row'>
           <div className='col-auto'>
-              <h1 style={{ margin: '3rem', fontSize: '3rem', padding: '1.5rem', backgroundColor: 'hsla(0,0%, 100%, .75', borderRadius: '2rem' }}>New Blog</h1>
+              <h1 style={{ margin: '3rem', fontSize: '2.5rem', padding: '1rem', backgroundColor: 'hsla(0,0%, 100%, .75', borderRadius: '2rem' }}>New Blog</h1>
           </div>
         </div>
       </animated.div>

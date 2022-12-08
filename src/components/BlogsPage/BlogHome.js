@@ -30,8 +30,8 @@ export default function BlogHome() {
             <h1
               style={{
                 margin: "3rem",
-                fontSize: "3rem",
-                padding: "1.5rem",
+                fontSize: "2.6rem",
+                padding: "1rem",
                 backgroundColor: "hsla(0,0%, 100%, .75",
                 borderRadius: "2rem",
               }}

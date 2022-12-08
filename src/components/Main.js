@@ -58,8 +58,8 @@ export default function Main() {
                     </div>
                 </div>
                 <div className='row'>
-                    <div className='col-auto m-3'>
-                        <Link to='/blogs' style={{textDecoration: 'none'}} ><p style={{ margin: '3rem', fontSize: '1rem', padding: '1rem', backgroundColor: 'rgb(255, 208, 199)', borderRadius: '2rem', color: 'black', textDecoration: 'none' }} >Blogs have been moved to a new location!</p></Link>
+                    <div className='col-auto my-3'>
+                        <Link to='/blogs' style={{textDecoration: 'none'}} ><p style={{ fontSize: '1.3rem', padding: '1rem', backgroundColor: 'rgb(255, 208, 199)', borderRadius: '2rem', color: 'black', textDecoration: 'none' }} >Blogs have been moved to a new location!</p></Link>
                     </div>
                 </div>
             </animated.div>

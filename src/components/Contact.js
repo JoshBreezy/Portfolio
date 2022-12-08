@@ -5,8 +5,6 @@ import emailjs from '@emailjs/browser';
 export default function ContactForm () {
     
     const { register, formState: { errors } } = useForm();
-    
-    console.log(errors);
 
     function sendEmail(e) {
         e.preventDefault();
