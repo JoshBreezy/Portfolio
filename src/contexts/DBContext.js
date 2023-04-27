@@ -15,9 +15,10 @@ export function DBProvider({ children }){
     // eslint-disable-next-line no-unused-vars
     const [ error, setError ] = useState();
 
-    function addCurrentUserToDB() {
+    function addCurrentUserToDB(userName) {
         return db.ref('users/' + auth.currentUser.uid).set({
-            email: auth.currentUser.email
+            email: auth.currentUser.email,
+            userName: userName
         })
     }
 
