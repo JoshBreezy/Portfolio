@@ -10,7 +10,7 @@ export default function UserSettingsPage() {
     const { currentUser, updateUserEmail, sendVerifyEmail } = useAuth();
     const [userDBInfo, setUserDBInfo] = useState({});
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState()
+    const [error, setError] = useState("")
     const [formState, setFormState] = useState({})
     const [emailToast, setEmailToast] = useState(false);
     const [updateToast, setUpdateToast] = useState(false);
@@ -76,7 +76,7 @@ export default function UserSettingsPage() {
             [e.target.name]: e.target.value
         })
         setAvailable(true);
-        setError();
+        setError("");
     }
 
     async function handleSubmit(e) {
@@ -93,47 +93,51 @@ export default function UserSettingsPage() {
                 } catch (err) {
                     setError(err);
                 }
-                if (formState.userName) {
-                    try {
-                        await checkUnavailNames(formState.userName).then((snapshot) => {
-                            if (snapshot.exists()) {
-                                setAvailable(false);
-                                throw new Error('Username Unavailable');
+            }
+            if (formState.userName) {
+                try {
+                    await checkUnavailNames(formState.userName).then((snapshot) => {
+                        if (snapshot.exists()) {
+                            setAvailable(false);
+                            throw new Error('Username Unavailable');
+                        } else {
+                            setAvailable(true)
+                        }
+                    })
+                    if (available === true) {
+                        try {
+                            if (userDBInfo.userName) {
+                                await checkUnavailNames(userDBInfo.userName).then((snapshot) => {
+                                    const key = Object.keys(snapshot.val());
+                                    removeFromUnavail(key[0]);
+                                })
                             }
-                        })
-                        if (available) {
                             try {
-                                if (userDBInfo.userName) {
-                                    await checkUnavailNames(userDBInfo.userName).then((snapshot) => {
-                                        const key = Object.keys(snapshot.val());
-                                        removeFromUnavail(key[0]);
-                                    })
-                                }
-                                try {
-                                    await addToUnavailNames(formState.userName)
-                                } catch (err) {
-                                    setError(err)
-                                }
+                                await addToUnavailNames(formState.userName)
                             } catch (err) {
                                 setError(err)
                             }
+                        } catch (err) {
+                            setError(err)
                         }
-                    } catch (err) {
-                        setError(err)
                     }
+                } catch (err) {
+                    setError(err)
                 }
             }
         }
-        try {
-            const update = { ...userDBInfo, ...formState };
-            await updateUserSettings(update.email, update.userName, update.ofAge)
-            callDB()
-        } catch (err) {
-            setError(err)
-            console.log(err)
-        } finally {
-            setLoading(false);
-            toggleUpdateToast();
+        if (error === "") {
+            try {
+                const update = { ...userDBInfo, ...formState };
+                await updateUserSettings(update.email, update.userName, update.ofAge)
+                callDB()
+            } catch (err) {
+                setError(err)
+                console.log(err)
+            } finally {
+                setLoading(false);
+                toggleUpdateToast();
+            }
         }
     }
 
