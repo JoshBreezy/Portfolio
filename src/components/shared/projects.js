@@ -31,7 +31,7 @@ export const PROJECTS = [
         repo: 'https://github.com/JoshBreezy/nucampsite/tree/build',
         description: `Through the course @NuCamp this website took several forms. Ending with redux, 
         a restful json server, and helper libraries 
-        like thunk. Json server not included.`
+        like thunk. MONGO server not included.`
     },
     {
         id: 4,
